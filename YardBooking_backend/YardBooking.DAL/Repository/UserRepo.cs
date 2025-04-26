@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 using YardBooking.DAL.Data;
 using YardBooking.DAL.Data.Models;
 
 namespace YardBooking.DAL.Repository
 {
-    class UserRepo
+    class UserRepo : IUserRepo
     {
         private readonly YardBookingContext _context;
 
@@ -18,49 +17,72 @@ namespace YardBooking.DAL.Repository
             _context = context;
         }
 
-        // Get all users
-        public async Task<List<User>> GetAllUsersAsync()
+        public IEnumerable<User> GetAllUsers()
         {
-            return await _context.Users.AsNoTracking().ToListAsync();
+            return _context.Users.ToList();
         }
+
         // Get user by ID
-        public async Task<User> GetUserByIdAsync(int userId)
+        public User GetUserById(int userId)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            return _context.Users.FirstOrDefault(u => u.UserId == userId);
         }
+
         // Get user by email
-        public async Task<User> GetUserByEmailAsync(string email)
+        public User GetUserByEmail(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return _context.Users.FirstOrDefault(u => u.Email == email);
         }
+
         // Create a new user
-        public async Task<User> CreateUserAsync(User user)
+        public User CreateUser(User user)
         {
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
+            _context.Users.Add(user);
+            _context.SaveChanges();
             return user;
         }
+
         // Update an existing user
-        public async Task<bool> UpdateUserAsync(User user)
+        public bool UpdateUser(User user)
         {
-            var existingUser = await _context.Users.FindAsync(user.UserId);
+            var existingUser = _context.Users.Find(user.UserId);
             if (existingUser == null)
             {
                 return false;
             }
             _context.Entry(existingUser).CurrentValues.SetValues(user);
+            _context.SaveChanges();
             return true;
         }
-        // delete user
-        public async Task<bool> DeleteUserAsync(int userId)
+
+        // Delete user
+        public bool DeleteUser(int userId)
         {
-            var user = await _context.Users.FindAsync(userId);
+            var user = _context.Users.Find(userId);
             if (user == null)
             {
                 return false;
             }
             _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
+            return true;
+        }
+
+        // Authenticate user
+        public User AuthenticateUser(string email, string password)
+        {
+            return _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+        }
+        // Change password
+        public bool ChangePassword(int userId, string currentPassword, string newPassword)
+        {
+            var user = _context.Users.Find(userId);
+            if (user == null || user.Password != currentPassword)
+            {
+                return false;
+            }
+            user.Password =  newPassword;
+            _context.SaveChanges();
             return true;
         }
     }

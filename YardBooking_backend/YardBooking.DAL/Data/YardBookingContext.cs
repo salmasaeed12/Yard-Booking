@@ -58,7 +58,7 @@ namespace YardBooking.DAL.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<TeamMembers> TeamMembers { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
         public DbSet<TeamBooking> TeamBookings { get; set; }
         public DbSet<Offer> Offers { get; set; }
     }
