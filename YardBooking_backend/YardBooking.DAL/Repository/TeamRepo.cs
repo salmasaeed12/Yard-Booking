@@ -17,7 +17,7 @@ namespace YardBooking.DAL.Repository
             _context = context;
         }
 
-        public Team CreateTeam(Team team)
+        public void CreateTeam(Team team)
         {
             if (team == null)
             {
@@ -25,7 +25,6 @@ namespace YardBooking.DAL.Repository
             }
             _context.Teams.Add(team);
             _context.SaveChanges();
-            return team;
         }
 
         public bool DeleteTeam(int teamId)

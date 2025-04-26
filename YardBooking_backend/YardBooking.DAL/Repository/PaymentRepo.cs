@@ -9,7 +9,7 @@ using YardBooking.DAL.Data.Models;
 
 namespace YardBooking.DAL.Repository
 {
-    class PaymentRepo
+    public class PaymentRepo : IPaymentRepo
     {
         private readonly YardBookingContext _context;
 
@@ -58,6 +58,11 @@ namespace YardBooking.DAL.Repository
             payment.Status = newStatus;
             _context.Payments.Update(payment);
             return _context.SaveChanges() > 0;
+        }
+
+        public bool Update(Payment payment)
+        {
+            throw new NotImplementedException();
         }
     }
 }

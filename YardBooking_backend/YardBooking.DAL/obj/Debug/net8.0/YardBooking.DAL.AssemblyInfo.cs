@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YardBooking.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9d5e084526f741fcf8635a7f241e34faeb6ddc7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0c473c0ba88289b4777acd0f38592301710d4d2")]
 [assembly: System.Reflection.AssemblyProductAttribute("YardBooking.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YardBooking.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

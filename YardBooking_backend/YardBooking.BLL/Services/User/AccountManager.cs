@@ -11,10 +11,10 @@ namespace HospitalSystem.BLL.Manager
 {
     public class AccountManager: IAccountManager
     {
-        private readonly UserManager<ApplcationUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
-        public AccountManager(UserManager<ApplcationUser> userManager , IConfiguration configuration)
+        public AccountManager(UserManager<User> userManager , IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -38,9 +38,9 @@ namespace HospitalSystem.BLL.Manager
             return GenerateToken(claims);
         }
 
-        public async Task<string> RegisterOnwer(RegisterDto registerDto)
+        public async Task<string> RegisterOwner(RegisterDto registerDto)
         {
-            ApplcationUser user = new ApplcationUser();
+            User user = new User();
             user.Email = registerDto.Email;
             user.UserName = registerDto.Name;
 
@@ -84,7 +84,7 @@ namespace HospitalSystem.BLL.Manager
 
         public async Task<string> RegisterPlayer(RegisterDto registerDto)
         {
-            ApplcationUser user = new ApplcationUser();
+            User user = new User();
             user.Email = registerDto.Email;
             user.UserName = registerDto.Name;
 

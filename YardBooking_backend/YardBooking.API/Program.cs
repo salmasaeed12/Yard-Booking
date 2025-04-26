@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using YardBooking.DAL.Data;
 using YardBooking.BLL.AutoMapper;
+using YardBooking.DAL.Repository;
 namespace YardBooking.API
 {
     public class Program
@@ -18,6 +19,11 @@ namespace YardBooking.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            // add Repositories
+            builder.Services.AddScoped<IUserRepo, UserRepo>();
+            builder.Services.AddScoped<ITeamRepo, TeamRepo>();
+            builder.Services.AddScoped<IYardRepo, YardRepo>();
+            builder.Services.AddScoped<IPaymentRepo, PaymentRepo>();
             // add automapper
             builder.Services.AddAutoMapper(m => m.AddProfile(new MappingProfile()));
             builder.Services.AddDbContext<YardBookingContext>(options =>

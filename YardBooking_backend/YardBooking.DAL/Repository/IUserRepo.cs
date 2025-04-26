@@ -13,7 +13,7 @@ namespace YardBooking.DAL.Repository
         User GetUserById(int userId);
         User GetUserByUsername(string username);
 
-        User CreateUser(User user);
+        void CreateUser(User user);
         bool UpdateUser(User user);
         bool DeleteUser(int userId);
 

@@ -8,7 +8,7 @@ using YardBooking.DAL.Data.Models;
 
 namespace YardBooking.DAL.Repository
 {
-    class UserRepo : IUserRepo
+    public class UserRepo : IUserRepo
     {
         private readonly YardBookingContext _context;
 
@@ -19,7 +19,7 @@ namespace YardBooking.DAL.Repository
 
         public IEnumerable<User> GetAllUsers()
         {
-            return _context.Users.ToList();
+            return _context.Users.AsNoTracking();
         }
 
         // Get user by ID
@@ -35,11 +35,10 @@ namespace YardBooking.DAL.Repository
         }
 
         // Create a new user
-        public User CreateUser(User user)
+        public void CreateUser(User user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
-            return user;
         }
 
         // Update an existing user

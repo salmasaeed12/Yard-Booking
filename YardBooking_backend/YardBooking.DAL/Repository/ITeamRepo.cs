@@ -10,7 +10,7 @@ namespace YardBooking.DAL.Repository
     public interface ITeamRepo
     {
         Team GetTeamById(int teamId);
-        Team CreateTeam(Team team);
+        void CreateTeam(Team team);
         bool UpdateTeam(Team team);
         bool DeleteTeam(int teamId);
         IQueryable<Team> GetAllTeams();
