@@ -9,7 +9,7 @@ using YardBooking.DAL.Data.Models;
 
 namespace YardBooking.DAL.Repository
 {
-    class UserRepo : IUserRepo
+    class UserRepo
     {
         private readonly YardBookingContext _context;
 

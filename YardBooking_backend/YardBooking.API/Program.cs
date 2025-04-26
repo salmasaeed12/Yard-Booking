@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using YardBooking.DAL.Data;
+using YardBooking.DAL.Data.Models;
 
 namespace YardBooking.API
 {
@@ -13,6 +16,10 @@ namespace YardBooking.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<YardBookingContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("YardBookingDb"));
+            });
 
             var app = builder.Build();
 

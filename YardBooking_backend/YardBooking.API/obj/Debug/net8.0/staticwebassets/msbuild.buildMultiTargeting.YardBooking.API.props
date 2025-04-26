@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\YardBooking.API.props" />
+</Project>

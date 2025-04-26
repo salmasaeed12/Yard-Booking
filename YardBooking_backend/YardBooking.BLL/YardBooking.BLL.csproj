@@ -11,4 +11,8 @@
     <Folder Include="Manager\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YardBooking.DAL\YardBooking.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
