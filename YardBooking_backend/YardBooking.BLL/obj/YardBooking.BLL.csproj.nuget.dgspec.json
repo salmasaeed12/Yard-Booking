@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {}
+    "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {
+    "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
         "projectName": "YardBooking.BLL",
-        "projectPath": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
-        "packagesPath": "C:\\Users\\kirom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\obj\\",
+        "projectPath": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
+        "packagesPath": "C:\\Users\\LOQ\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kirom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LOQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
-                "projectPath": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj"
+              "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
+                "projectPath": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj"
               }
             }
           }
@@ -75,24 +75,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
+    "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
         "projectName": "YardBooking.DAL",
-        "projectPath": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
-        "packagesPath": "C:\\Users\\kirom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kirom\\source\\repos\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\obj\\",
+        "projectPath": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
+        "packagesPath": "C:\\Users\\LOQ\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LOQ\\Source\\Repos\\YardBooking\\YardBooking_backend\\YardBooking.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kirom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LOQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -164,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

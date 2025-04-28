@@ -20,10 +20,10 @@ namespace YardBooking.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             // add Repositories
-            builder.Services.AddScoped<IUserRepo, UserRepo>();
-            builder.Services.AddScoped<ITeamRepo, TeamRepo>();
-            builder.Services.AddScoped<IYardRepo, YardRepo>();
-            builder.Services.AddScoped<IPaymentRepo, PaymentRepo>();
+            //builder.Services.AddScoped<IUserRepo, UserRepo>();
+            //builder.Services.AddScoped<ITeamRepo, TeamRepo>();
+            //builder.Services.AddScoped<IYardRepo, YardRepo>();
+            //builder.Services.AddScoped<IPaymentRepo, PaymentRepo>();
             // add automapper
             builder.Services.AddAutoMapper(m => m.AddProfile(new MappingProfile()));
             builder.Services.AddDbContext<YardBookingContext>(options =>
