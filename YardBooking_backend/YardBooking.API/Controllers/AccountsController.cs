@@ -1,39 +1,113 @@
-﻿//using HospitalSystem.BLL.Manager;
-//using Microsoft.AspNetCore.Mvc;
-//using YardBooking.BLL.Dtos.AccountDto;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using YardBooking.BLL.Dtos.AccountDto;
+using YardBooking.BLL.IServices;
 
-//namespace YardBooking.API.Controllers
-//{
-//    [Route("api/[controller]")]
-//    [ApiController]
-//    public class AccountsController : ControllerBase
-//    {
-//        private readonly IAccountManager _accountManager;
+namespace YardBooking.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
+    {
+        private readonly IAuthService _authService;
 
-//        public AccountsController(IAccountManager accountManager)
-//        {
-//            _accountManager = accountManager;
-//        }
+        public AuthController(IAuthService authService)
+        {
+            _authService = authService;
+        }
 
-//        [HttpPost("Login")]
-//        public async Task<ActionResult> Login(LoginDto loginDto)
-//        {
-//            var result = await _accountManager.Login(loginDto);
-//            if (result == null)
-//            {
-//                return Unauthorized();
-//            }
-//            return Ok(result);
-//        }
-//        [HttpPost("Register")]
-//        public async Task<ActionResult> Register(RegisterDto registerDto)
-//        {
-//            var result = await _accountManager.Register(registerDto);
-//            if (result == null)
-//            {
-//                return Unauthorized();
-//            }
-//            return Ok(result);
-//        }
-//    }
-//}
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(RegisterDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _authService.RegisterAsync(model);
+            if (!result.IsSuccessful)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _authService.LoginAsync(model);
+            if (!result.IsSuccessful)
+            {
+                return Unauthorized(result);
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _authService.RefreshTokenAsync(model.Token);
+            if (!result.IsSuccessful)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost("revoke-token")]
+        public async Task<IActionResult> RevokeToken(RefreshTokenDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _authService.RevokeTokenAsync(model.Token);
+            if (!result)
+            {
+                return BadRequest(new { Message = "Invalid token" });
+            }
+
+            return Ok(new { Message = "Token revoked" });
+        }
+
+        [Authorize]
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+
+            var result = await _authService.ChangePasswordAsync(userId, model);
+            if (!result)
+            {
+                return BadRequest(new { Message = "Failed to change password" });
+            }
+
+            return Ok(new { Message = "Password changed successfully" });
+        }
+    }
+}

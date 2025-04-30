@@ -1,68 +1,119 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YardBooking.DAL.Data.Models;
-using YardBooking.DAL.temp;
 
 namespace YardBooking.DAL.Data
 {
-    public class YardBookingContext : DbContext
+    public class YardBookingContext : IdentityDbContext<ApplicationUser>
     {
-        public YardBookingContext(DbContextOptions options) : base(options)
+        public YardBookingContext(DbContextOptions<YardBookingContext> options) : base(options)
         {
         }
+
+        public DbSet<Yard> Yards { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<TeamBooking> TeamBookings { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Offer> Offers { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-            .OwnsOne(u => u.Location);
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.Yards)
-                .WithOne(y => y.User)
-                .HasForeignKey(y => y.YardID)
-                .OnDelete(DeleteBehavior.Cascade);
+            // Configure many-to-many relationships with composite keys
+            modelBuilder.Entity<TeamMember>()
+                 .HasKey(tm => new { tm.TeamId, tm.UserId });
 
-            //// yard and schedule
-            //modelBuilder.Entity<Yard>()
-            //    .HasMany(y => y.Schedules)
-            //    .WithOne(s => s.Yard)
-            //    .HasForeignKey(s => s.YardID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<TeamBooking>()
+                .HasKey(tb => new { tb.TeamId, tb.BookingId });
 
-            //// yard and booking
-            //modelBuilder.Entity<Yard>()
-            //    .HasMany(y => y.Bookings)
-            //    .WithOne(b => b.Yard)
-            //    .HasForeignKey(b => b.YardID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            // Configure relationships
+            modelBuilder.Entity<TeamMember>()
+                .HasOne(tm => tm.Team)
+                .WithMany(t => t.Members)
+                .HasForeignKey(tm => tm.TeamId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            //// user and booking
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Bookings)
-            //    .WithOne(b => b.User)
-            //    .HasForeignKey(b => b.UserID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<TeamMember>()
+                .HasOne(tm => tm.User)
+                .WithMany(u => u.TeamMemberships)
+                .HasForeignKey(tm => tm.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            //// teammembers and team
-            //modelBuilder.Entity<Team>()
-            //    .HasMany(t => t.TeamMember)
-            //    .WithOne(tm => tm.Team)
-            //    .HasForeignKey(tm => tm.TeamID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            //--------------------------------
+            // Configure UserId column length for TeamMembers to avoid exceeding index size
+            modelBuilder.Entity<TeamMember>()
+                .Property(tm => tm.UserId)
+                .HasMaxLength(450); // Limit the size to stay under 900 bytes total key length
+            //--------------------------------
+
+            modelBuilder.Entity<TeamBooking>()
+                .HasOne(tb => tb.Team)
+                .WithMany(t => t.TeamBookings)
+                .HasForeignKey(tb => tb.TeamId);
+
+            modelBuilder.Entity<TeamBooking>()
+                .HasOne(tb => tb.Booking)
+                .WithMany(b => b.TeamBookings)
+                .HasForeignKey(tb => tb.BookingId);
+
+            modelBuilder.Entity<Yard>()
+                .HasOne(y => y.Owner)
+                .WithMany(u => u.OwnedYards)
+                .HasForeignKey(y => y.OwnerId);
+
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.Captain)
+                .WithMany()
+                .HasForeignKey(t => t.CaptainId);
+
+            modelBuilder.Entity<Schedule>()
+                .HasOne(s => s.Yard)
+                .WithMany(y => y.Schedules)
+                .HasForeignKey(s => s.YardId);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Yard)
+                .WithMany(y => y.Bookings)
+                .HasForeignKey(b => b.YardId);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Schedule)
+                .WithMany()
+                .HasForeignKey(b => b.ScheduleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Booking>()
+            .HasOne(b => b.Yard)
+            .WithMany(y => y.Bookings)
+            .HasForeignKey(b => b.YardId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Payment>()
+                .HasOne(p => p.Booking)
+                .WithMany(b => b.Payments)
+                .HasForeignKey(p => p.BookingId);
+
+            modelBuilder.Entity<Offer>()
+                .HasOne(o => o.Yard)
+                .WithMany(y => y.Offers)
+                .HasForeignKey(o => o.YardId);
+
+            modelBuilder.Entity<RefreshToken>()
+                .HasOne(rt => rt.User)
+                .WithMany(u => u.RefreshTokens)
+                .HasForeignKey(rt => rt.UserId);
         }
-
-        public DbSet<User> Users { get; set; }
-        public DbSet<Yard> Yards { get; set; }
-        //public DbSet<Booking> Bookings { get; set; }
-        //public DbSet<Payment> Payments { get; set; }
-        //public DbSet<Schedule> Schedules { get; set; }
-        //public DbSet<Team> Teams { get; set; }
-        //public DbSet<TeamMember> TeamMembers { get; set; }
-        //public DbSet<TeamBooking> TeamBookings { get; set; }
-        //public DbSet<Offer> Offers { get; set; }
     }
 }
+

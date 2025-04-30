@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Payment\" />
     <Folder Include="Services\Payment\" />
     <Folder Include="Services\Team\" />
   </ItemGroup>

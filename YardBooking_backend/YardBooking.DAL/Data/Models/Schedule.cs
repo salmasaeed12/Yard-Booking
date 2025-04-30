@@ -5,25 +5,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YardBooking.DAL.Data.Models;
 
-namespace YardBooking.DAL.temp
+namespace YardBooking.DAL.Data.Models
 {
     public class Schedule
     {
-        [Key]
-        public int ScheduleID { get; set; }
-
-        [ForeignKey("Yard")]
-        public int YardID { get; set; }
-
-        public string DayOfWeek { get; set; }
+        public int ScheduleId { get; set; }
+        public int YardId { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public bool IsAvailable { get; set; }
 
-        // Navigation Properties
-        public Yard Yard { get; set; }
-        public ICollection<Booking> Bookings { get; set; }
+        // Navigation property
+        public virtual Yard Yard { get; set; }
     }
 }

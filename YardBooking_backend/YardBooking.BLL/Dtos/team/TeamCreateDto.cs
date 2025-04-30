@@ -9,12 +9,8 @@ using YardBooking.DAL.Data.enums;
 
 namespace YardBooking.BLL.Dtos.team
 {
-    public class TeamCreateDto
+    public class CreateTeamDto
     {
         public string TeamName { get; set; }
-        public int CaptainID { get; set; }
-        public string NameCaptain { get; set; }
-        // Include team members information
-        public ICollection<TeamMemberReadDto> TeamMembers { get; set; }
     }
 }

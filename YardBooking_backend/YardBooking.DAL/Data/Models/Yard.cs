@@ -5,32 +5,32 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YardBooking.DAL.temp;
 
 namespace YardBooking.DAL.Data.Models
 {
     public class Yard
     {
-        [Key]
-        public int YardID { get; set; }
-        // latitude
-        public string YardLatitude { get; set; }
-        // longitude
-        public string YardLongitude { get; set; }
+        public int YardId { get; set; }
         public string YardName { get; set; }
-        public string YardArea { get; set; }
+        public string YardLocation { get; set; }
+        public double YardArea { get; set; }
         public string ServicesOffered { get; set; }
         public string YardPhotos { get; set; }
-        // Foreign Key
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        // Navigation Properties
-        public User User { get; set; }
 
+        // Foreign key for owner
+        public string OwnerId { get; set; }
+        public virtual ApplicationUser Owner { get; set; }
 
-        //public ICollection<Schedule> Schedules { get; set; }
-        //public ICollection<Offer> Offers { get; set; }
-        //public ICollection<Booking> Bookings { get; set; }
+        // Navigation properties
+        public virtual ICollection<Schedule> Schedules { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<Offer> Offers { get; set; }
 
+        public Yard()
+        {
+            Schedules = new HashSet<Schedule>();
+            Bookings = new HashSet<Booking>();
+            Offers = new HashSet<Offer>();
+        }
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace YardBooking.BLL.Dtos.team
 {
-    class TeamUpdateDto
+    public class UpdateTeamDto
     {
-        
+        public string TeamName { get; set; }
+        public string CaptainId { get; set; }
     }
 }

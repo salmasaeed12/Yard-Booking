@@ -1,11 +1,3 @@
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.csproj.AssemblyReference.cache
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.AssemblyInfoInputs.cache
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.AssemblyInfo.cs
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.csproj.CoreCompileInputs.cache
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.sourcelink.json
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\Debug\net8.0\appsettings.json
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\Debug\net8.0\YardBooking.API.staticwebassets.endpoints.json
@@ -139,6 +131,14 @@ C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\De
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\Debug\net8.0\YardBooking.DAL.dll
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\Debug\net8.0\YardBooking.BLL.pdb
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\bin\Debug\net8.0\YardBooking.DAL.pdb
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.csproj.AssemblyReference.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.AssemblyInfoInputs.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.AssemblyInfo.cs
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.csproj.CoreCompileInputs.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.sourcelink.json
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\scopedcss\bundle\YardBooking.API.styles.css
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\staticwebassets.development.json

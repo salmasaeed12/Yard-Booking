@@ -1,13 +1,10 @@
-﻿using YardBooking.BLL.Dtos.AccountDto;
+﻿//using YardBooking.BLL.Dtos.AccountDto;
 
-namespace HospitalSystem.BLL.Manager
-{
-    public interface IAccountManager
-    {
-        Task<string> LoginOwner(LoginDto loginDto);
-        Task<string> RegisterOwner(RegisterDto   registerDto);
-        Task<string> LoginPlayer(LoginDto loginDto);
-        Task<string> RegisterPlayer(RegisterDto registerDto);
-
-    }
-}
+//namespace HospitalSystem.BLL.Managerc
+//{
+//    public interface IAccountManager
+//    {
+//        Task<string> Register(RegisterDto registerDto);
+//        Task<string> Login(LoginDto loginDto);
+//    }
+//}
