@@ -9,8 +9,7 @@ namespace YardBooking.BLL.Dtos.Booking
     public class CreateBookingDto
     {
         public DateTime BookingDate { get; set; }
-        public int YardId { get; set; }
-        public int ScheduleId { get; set; }
-        public int TeamId { get; set; }
+        public int YardID { get; set; }
+        public int ScheduleID { get; set; }
     }
 }

@@ -9,11 +9,11 @@ namespace YardBooking.BLL.Dtos.Booking
 {
     public class BookingDto
     {
-        public int BookingId { get; set; }
+        public int BookingID { get; set; }
         public DateTime BookingDate { get; set; }
-        public int YardId { get; set; }
-        public string YardName { get; set; }
-        public int ScheduleId { get; set; }
-        public BookingStatus Status { get; set; }
+        public int YardID { get; set; }
+        public int ScheduleID { get; set; }
+        public string Status { get; set; } = "Pending";
     }
+
 }

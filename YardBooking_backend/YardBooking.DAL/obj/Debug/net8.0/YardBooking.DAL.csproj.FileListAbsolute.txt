@@ -13,3 +13,18 @@ C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\De
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.deps.json
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.runtimeconfig.json
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.pdb
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.AssemblyReference.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfoInputs.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfo.cs
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.CoreCompileInputs.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.sourcelink.json
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\refint\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll

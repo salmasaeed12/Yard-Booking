@@ -24,6 +24,7 @@ namespace YardBooking.DAL.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -113,6 +114,15 @@ namespace YardBooking.DAL.Data
                 .HasOne(rt => rt.User)
                 .WithMany(u => u.RefreshTokens)
                 .HasForeignKey(rt => rt.UserId);
+
+            // Configure decimal precision to avoid truncation warnings
+            modelBuilder.Entity<Offer>()
+                .Property(o => o.DiscountPercentage)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Amount)
+                .HasPrecision(10, 2);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YardBooking.DAL.Data;
 
@@ -11,9 +12,11 @@ using YardBooking.DAL.Data;
 namespace YardBooking.DAL.Migrations
 {
     [DbContext(typeof(YardBookingContext))]
-    partial class YardBookingContextModelSnapshot : ModelSnapshot
+    [Migration("20250502004036_AddPrecisionToDecimalFields")]
+    partial class AddPrecisionToDecimalFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

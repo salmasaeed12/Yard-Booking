@@ -11,6 +11,7 @@ using YardBooking.DAL.Data.Models;
 using YardBooking.Application.Services;
 using YardBooking.BLL.IServices;
 using YardBooking.DAL.Inerfaces;
+using YardBooking.BLL.Services;
 namespace YardBooking.API
 {
     public class Program
@@ -31,6 +32,15 @@ namespace YardBooking.API
             // Register repositories
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            // Register repositories
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+            // Register services
+            builder.Services.AddScoped<IBookingService, BookingService>();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 
 
             // Add CORS

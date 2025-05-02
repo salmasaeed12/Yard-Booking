@@ -65,6 +65,11 @@ namespace YardBooking.BLL.AutoMapper
             CreateMap<Offer, OfferDto>();
             CreateMap<CreateOfferDto, Offer>();
             CreateMap<UpdateOfferDto, Offer>();
+
+            // Booking mappings
+            CreateMap<Booking, BookingDto>();
+            CreateMap<CreateBookingDto, Booking>();
+            CreateMap<UpdateBookingDto, Booking>();
         }
     }
 }

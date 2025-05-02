@@ -4,27 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YardBooking.DAL.Data.enums;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using YardBooking.DAL.Data.Models;
 
 namespace YardBooking.DAL.Data.Models
 {
     public class Booking
     {
-        public int BookingId { get; set; }
+        [Key]
+        public int BookingID { get; set; }
+
         public DateTime BookingDate { get; set; }
+
+        [ForeignKey("Yard")]
         public int YardId { get; set; }
+        public virtual Yard Yard { get; set; }
+
+        [ForeignKey("Schedule")]
         public int ScheduleId { get; set; }
-        public BookingStatus Status { get; set; } = BookingStatus.Pending;
+        public virtual Schedule Schedule { get; set; }
+
+        public string Status { get; set; } = "Pending"; // Pending, Confirmed, Cancelled
 
         // Navigation properties
-        public virtual Yard Yard { get; set; }
-        public virtual Schedule Schedule { get; set; }
         public virtual ICollection<TeamBooking> TeamBookings { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
-
-        public Booking()
-        {
-            TeamBookings = new HashSet<TeamBooking>();
-            Payments = new HashSet<Payment>();
-        }
     }
 }
