@@ -30,3 +30,19 @@ D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardB
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\refint\YardBooking.BLL.dll
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.pdb
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\ref\YardBooking.BLL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\bin\Debug\net8.0\YardBooking.BLL.deps.json
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\bin\Debug\net8.0\YardBooking.BLL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\bin\Debug\net8.0\YardBooking.BLL.pdb
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\bin\Debug\net8.0\YardBooking.DAL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\bin\Debug\net8.0\YardBooking.DAL.pdb
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.csproj.AssemblyReference.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.AssemblyInfoInputs.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.AssemblyInfo.cs
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.csproj.CoreCompileInputs.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.sourcelink.json
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBook.180427C5.Up2Date
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\refint\YardBooking.BLL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.pdb
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\ref\YardBooking.BLL.dll

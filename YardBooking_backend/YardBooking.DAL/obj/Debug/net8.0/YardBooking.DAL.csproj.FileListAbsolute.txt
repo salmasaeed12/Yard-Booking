@@ -28,3 +28,18 @@ D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardB
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.deps.json
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.runtimeconfig.json
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.pdb
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.AssemblyReference.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfoInputs.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfo.cs
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.CoreCompileInputs.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.sourcelink.json
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\refint\YardBooking.DAL.dll
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
+C:\Users\skytop\Desktop\updates\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll

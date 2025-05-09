@@ -41,6 +41,12 @@ namespace YardBooking.API
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+            // Register repository
+            builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
+
+            // Register service
+            builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
 
 
             // Add CORS

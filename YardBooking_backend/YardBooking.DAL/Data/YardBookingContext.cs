@@ -80,7 +80,7 @@ namespace YardBooking.DAL.Data
             modelBuilder.Entity<Schedule>()
                 .HasOne(s => s.Yard)
                 .WithMany(y => y.Schedules)
-                .HasForeignKey(s => s.YardId);
+                .HasForeignKey(s => s.YardID_FK);
 
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Yard)
@@ -123,6 +123,12 @@ namespace YardBooking.DAL.Data
             modelBuilder.Entity<Payment>()
                 .Property(p => p.Amount)
                 .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Schedule>()
+                        .HasOne(s => s.Yard)
+                        .WithMany(y => y.Schedules)
+                        .HasForeignKey(s => s.YardID_FK)
+                        .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

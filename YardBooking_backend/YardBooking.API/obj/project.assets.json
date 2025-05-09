@@ -5286,11 +5286,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.API\\YardBooking.API.csproj",
+      "projectUniqueName": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.API\\YardBooking.API.csproj",
       "projectName": "YardBooking.API",
-      "projectPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.API\\YardBooking.API.csproj",
+      "projectPath": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.API\\YardBooking.API.csproj",
       "packagesPath": "C:\\Users\\skytop\\.nuget\\packages\\",
-      "outputPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.API\\obj\\",
+      "outputPath": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\skytop\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5308,8 +5308,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {
-              "projectPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj"
+            "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {
+              "projectPath": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {}
+    "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {}
   },
   "projects": {
-    "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
+    "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
         "projectName": "YardBooking.DAL",
-        "projectPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
+        "projectPath": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
         "packagesPath": "C:\\Users\\skytop\\.nuget\\packages\\",
-        "outputPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\obj\\",
+        "outputPath": "C:\\Users\\skytop\\Desktop\\updates\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skytop\\AppData\\Roaming\\NuGet\\NuGet.Config",
