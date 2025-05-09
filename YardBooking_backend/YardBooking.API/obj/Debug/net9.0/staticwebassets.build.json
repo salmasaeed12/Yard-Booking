@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "j3atRCtcTmqXv9gDc+hnb/4ITiwA48ngmPNaHkPP00Q=",
+  "Source": "YardBooking.API",
+  "BasePath": "_content/YardBooking.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -65,6 +65,12 @@ namespace YardBooking.DAL.Repository
 
         public async Task<Booking> CreateBookingAsync(Booking booking)
         {
+            if (!await IsYardAvailableAsync(booking.YardId, booking.ScheduleId, booking.BookingDate))
+            {
+                throw new InvalidOperationException("The yard is not available for the selected schedule and date.");
+            }
+
+            booking.Status = "Pending";
             await _context.Bookings.AddAsync(booking);
             await _context.SaveChangesAsync();
             return booking;
@@ -72,9 +78,30 @@ namespace YardBooking.DAL.Repository
 
         public async Task<Booking> UpdateBookingAsync(Booking booking)
         {
-            _context.Bookings.Update(booking);
+            var existingBooking = await _context.Bookings.FindAsync(booking.BookingID);
+            if (existingBooking == null)
+            {
+                throw new KeyNotFoundException("Booking not found.");
+            }
+
+            if (existingBooking.Status == "Cancelled")
+            {
+                throw new InvalidOperationException("Cannot update a cancelled booking.");
+            }
+
+            if (!await IsYardAvailableAsync(booking.YardId, booking.ScheduleId, booking.BookingDate))
+            {
+                throw new InvalidOperationException("The yard is not available for the updated schedule and date.");
+            }
+
+            existingBooking.BookingDate = booking.BookingDate;
+            existingBooking.YardId = booking.YardId;
+            existingBooking.ScheduleId = booking.ScheduleId;
+            existingBooking.Status = booking.Status;
+
+            _context.Bookings.Update(existingBooking);
             await _context.SaveChangesAsync();
-            return booking;
+            return existingBooking;
         }
 
         public async Task<bool> DeleteBookingAsync(int id)
@@ -83,7 +110,50 @@ namespace YardBooking.DAL.Repository
             if (booking == null)
                 return false;
 
-            _context.Bookings.Remove(booking);
+            if (booking.Status == "Cancelled")
+            {
+                throw new InvalidOperationException("Booking is already cancelled.");
+            }
+
+            booking.Status = "Cancelled";
+            _context.Bookings.Update(booking);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<Booking>> GetBookingsByStatusAsync(string status)
+        {
+            return await _context.Bookings
+                .Include(b => b.Yard)
+                .Include(b => b.Schedule)
+                .Where(b => b.Status.Equals(status, StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Booking>> GetBookingsByUserAsync(string userId)
+        {
+            return await _context.Bookings
+                .Include(b => b.Yard)
+                .Include(b => b.Schedule)
+                .Where(b => b.Yard.OwnerId == userId)
+                .ToListAsync();
+        }
+
+        public async Task<bool> ConfirmBookingAsync(int bookingId)
+        {
+            var booking = await _context.Bookings.FindAsync(bookingId);
+            if (booking == null)
+            {
+                throw new KeyNotFoundException("Booking not found.");
+            }
+
+            if (booking.Status != "Pending")
+            {
+                throw new InvalidOperationException("Only pending bookings can be confirmed.");
+            }
+
+            booking.Status = "Confirmed";
+            _context.Bookings.Update(booking);
             await _context.SaveChangesAsync();
             return true;
         }

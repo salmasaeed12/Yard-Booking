@@ -310,3 +310,14 @@ D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardB
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.pdb
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.genruntimeconfig.cache
 D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\ref\YardBooking.API.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.csproj.AssemblyReference.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.GeneratedMSBuildEditorConfig.editorconfig
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.AssemblyInfoInputs.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.AssemblyInfo.cs
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.csproj.CoreCompileInputs.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.MvcApplicationPartsAssemblyInfo.cs
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.MvcApplicationPartsAssemblyInfo.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.sourcelink.json
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\refint\YardBooking.API.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.pdb

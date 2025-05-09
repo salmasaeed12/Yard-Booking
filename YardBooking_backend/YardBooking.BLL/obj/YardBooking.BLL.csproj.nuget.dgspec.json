@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {}
+    "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {}
   },
   "projects": {
-    "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {
+    "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
+        "projectUniqueName": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
         "projectName": "YardBooking.BLL",
-        "projectPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
-        "packagesPath": "C:\\Users\\skytop\\.nuget\\packages\\",
-        "outputPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\obj\\",
+        "projectPath": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\YardBooking.BLL.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\skytop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
-                "projectPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj"
+              "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
+                "projectPath": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj"
               }
             }
           }
@@ -44,7 +47,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -71,21 +75,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
+    "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
+        "projectUniqueName": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
         "projectName": "YardBooking.DAL",
-        "projectPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
-        "packagesPath": "C:\\Users\\skytop\\.nuget\\packages\\",
-        "outputPath": "D:\\رواد مصر\\project\\New folder (2)\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\obj\\",
+        "projectPath": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\YardBooking.DAL.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "E:\\New folder\\Yard-Booking\\YardBooking_backend\\YardBooking.DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\skytop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,7 +101,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -111,7 +118,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -156,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
