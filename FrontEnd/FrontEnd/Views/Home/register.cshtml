@@ -1,10 +1,11 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+For more information on enabling MVC for empty projects, visit [https://go.microsoft.com/fwlink/?LinkID=397860](https://go.microsoft.com/fwlink/?LinkID=397860)
 *@
 @{
 }
-
-
+@model FrontEnd.Models.RegisterViewModel
+@{
+}
 <style>
     * {
         margin: 0;
@@ -69,7 +70,8 @@
         position: relative;
     }
 
-        .input-container input {
+        .input-container input,
+        .input-container select {
             width: 100%;
             padding: 0.5rem 0.75rem;
             padding-right: 2.5rem;
@@ -79,7 +81,8 @@
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-            .input-container input:focus {
+            .input-container input:focus,
+            .input-container select:focus {
                 border-color: #22c55e;
                 box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
             }
@@ -91,6 +94,18 @@
             transform: translateY(-50%);
             color: #9ca3af;
         }
+
+    .radio-group {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
 
     .submit-btn {
         width: 100%;
@@ -154,106 +169,203 @@
             text-decoration: none;
         }
 
-            .login-link a:hover {
-                text-decoration: underline;
-            }
+    .login-link a:hover {
+        text-decoration: underline;
+    }
 
+    .validation-message {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: block;
+    }
+
+    .input-error {
+        border-color: #dc2626 !important;
+    }
+
+        .input-error:focus {
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2) !important;
+        }
 </style>
 
-    <div class="container">
-        <div class="form-container">
-            <div class="logo">
-                <span class="material-symbols-outlined">
-                    sports_soccer
-                </span>
-                <p>Football Yard</p>
-            </div>
+<div class="container">
+    <div class="form-container">
+        <div class="logo">
+            <span class="material-symbols-outlined">
+                sports_soccer
+            </span>
+            <p>Football Yard</p>
+        </div>
 
-            <form>
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <div class="input-container">
-                        <input type="text" id="name" placeholder="Full Name" />
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </div>
+        <form asp-controller="Auth" asp-action="Register" method="post">
+            <!-- Show success message if available -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
                 </div>
+            }
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="input-container">
-                        <input type="email" id="email" placeholder="Email" />
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-container">
-                        <input type="password" id="password" placeholder="Password" />
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="input-container">
-                        <input type="password" id="confirmPassword" placeholder="Confirm Password" />
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Register</button>
-            </form>
-
-            <div class="divider"></div>
-
-            <div class="social-buttons">
-                <button class="social-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z">
-                        </path>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z">
-                        </path>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z">
-                        </path>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z">
-                        </path>
+            <div class="form-group">
+                <label asp-for="Name">Full Name</label>
+                <div class="input-container">
+                    <input asp-for="Name" type="text" placeholder="Full Name" class="@(ViewData.ModelState["Name"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    Continue with Google
-                </button>
-                <button class="social-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                    </svg>
-                    Continue with Facebook
-                </button>
+                </div>
+                <span asp-validation-for="Name" class="validation-message"></span>
             </div>
 
-            <div class="login-link">
-            <p>Already have an account? <a  asp-controller="Home" asp-action="Login">Log In</a></p>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <div class="input-container">
+                    <input asp-for="Email" type="email" placeholder="Email" class="@(ViewData.ModelState["Email"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                        </path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <span asp-validation-for="Email" class="validation-message"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <div class="input-container">
+                    <input asp-for="Password" type="password" placeholder="Password" class="@(ViewData.ModelState["Password"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <span asp-validation-for="Password" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Confirm Password</label>
+                <div class="input-container">
+                    <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password" class="@(ViewData.ModelState["ConfirmPassword"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Gender">Gender</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input asp-for="Gender" type="radio" id="male" value="male" />
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-option">
+                        <input asp-for="Gender" type="radio" id="female" value="female" />
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <span asp-validation-for="Gender" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateOfBirth">Date of Birth</label>
+                <div class="input-container">
+                    <input asp-for="DateOfBirth" type="date" class="@(ViewData.ModelState["DateOfBirth"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+                <span asp-validation-for="DateOfBirth" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IDNumber">National ID</label>
+                <div class="input-container">
+                    <input asp-for="IDNumber" type="text" placeholder="National ID" class="@(ViewData.ModelState["IDNumber"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Card body -->
+                        <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
+                        <!-- Divider line -->
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                        <!-- Card number/chip area -->
+                        <line x1="6" y1="15" x2="8" y2="15"></line>
+                        <line x1="10" y1="15" x2="14" y2="15"></line>
+                    </svg>
+                </div>
+                <span asp-validation-for="IDNumber" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber">Phone</label>
+                <div class="input-container">
+                    <input asp-for="PhoneNumber" type="tel" placeholder="Phone Number" class="@(ViewData.ModelState["PhoneNumber"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </div>
+                <span asp-validation-for="PhoneNumber" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location">Location</label>
+                <div class="input-container">
+                    <input asp-for="Location" type="text" placeholder="Your Location" class="@(ViewData.ModelState["Location"]?.Errors.Count > 0 ? "input-error" : "")" />
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <span asp-validation-for="Location" class="validation-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Role">Role</label>
+                <div class="input-container">
+                    <select asp-for="Role" class="@(ViewData.ModelState["Role"]?.Errors.Count > 0 ? "input-error" : "")">
+                        <option value="@UserRole.User">Player</option>
+                        <option value="@UserRole.Owner">Owner</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Role" class="validation-message"></span>
+            </div>
+
+            <!-- Display general validation errors -->
+            <div asp-validation-summary="ModelOnly" class="validation-message"></div>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="login-link">
+            <p>Already have an account? <a asp-controller="Home" asp-action="Login">Log In</a></p>
         </div>
     </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

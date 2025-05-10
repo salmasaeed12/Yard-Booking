@@ -9,6 +9,12 @@ namespace FrontEnd
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+
+            // Add HttpClient factory
+            builder.Services.AddHttpClient();
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
