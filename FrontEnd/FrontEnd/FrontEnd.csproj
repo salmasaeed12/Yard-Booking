@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>
