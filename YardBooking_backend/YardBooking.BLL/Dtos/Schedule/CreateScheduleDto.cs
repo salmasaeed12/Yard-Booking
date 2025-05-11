@@ -8,10 +8,10 @@ namespace YardBooking.BLL.Dtos.Schedule
 {
     public class CreateScheduleDto
     {
-        public int YardId { get; set; }
-        public DayOfWeek DayOfWeek { get; set; }
+        public int YardID_FK { get; set; }
+        public DateTime DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-        public bool IsAvailable { get; set; } = true;
+        public bool IsActive { get; set; } = true;
     }
 }

@@ -10,14 +10,19 @@ namespace YardBooking.DAL.Data.Models
 {
     public class Schedule
     {
+        [Key]
         public int ScheduleId { get; set; }
-        public int YardId { get; set; }
-        public DayOfWeek DayOfWeek { get; set; }
+
+        [ForeignKey("Yard")]
+        public int YardID_FK { get; set; }
+        public virtual Yard Yard { get; set; }
+
+        public DateTime DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-        public bool IsAvailable { get; set; }
+        public bool IsActive { get; set; }
 
-        // Navigation property
-        public virtual Yard Yard { get; set; }
+        // Navigation property for bookings
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }
