@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YardBooking.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f7e6e9beee8133373fb5d3c50ab6e7d87feadc3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a4faf102dad355009e1189c58ce9ccf6b811dc9")]
 [assembly: System.Reflection.AssemblyProductAttribute("YardBooking.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YardBooking.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
