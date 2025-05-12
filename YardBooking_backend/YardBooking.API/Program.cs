@@ -58,7 +58,6 @@ namespace YardBooking.API
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
-                options.Password.RequireDigit = true;
                 options.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<YardBookingContext>()

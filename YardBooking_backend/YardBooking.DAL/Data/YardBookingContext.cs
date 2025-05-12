@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,12 @@ namespace YardBooking.DAL.Data
         public YardBookingContext(DbContextOptions<YardBookingContext> options) : base(options)
         {
         }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .ConfigureWarnings(warnings =>
+                    warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+        }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Yard> Yards { get; set; }
         public DbSet<Team> Teams { get; set; }
@@ -81,6 +88,11 @@ namespace YardBooking.DAL.Data
                 .HasOne(s => s.Yard)
                 .WithMany(y => y.Schedules)
                 .HasForeignKey(s => s.YardID_FK);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.Schedule)
+                .WithMany()
+                .HasForeignKey(b => b.ScheduleId);
 
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.Yard)

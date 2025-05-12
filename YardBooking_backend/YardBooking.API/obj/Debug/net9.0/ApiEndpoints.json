@@ -8,7 +8,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
+        "Name": "dto",
         "Type": "YardBooking.BLL.Dtos.AccountDto.ChangePasswordDto",
         "IsRequired": true
       }
@@ -17,31 +17,15 @@
   },
   {
     "ContainingType": "YardBooking.API.Controllers.AuthController",
-    "Method": "Login",
+    "Method": "LoginAsync",
     "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
+        "Name": "loginDto",
         "Type": "YardBooking.BLL.Dtos.AccountDto.LoginDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "YardBooking.API.Controllers.AuthController",
-    "Method": "RefreshToken",
-    "RelativePath": "api/Auth/refresh-token",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "YardBooking.BLL.Dtos.AccountDto.RefreshTokenDto",
         "IsRequired": true
       }
     ],
@@ -56,24 +40,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
+        "Name": "registerDto",
         "Type": "YardBooking.BLL.Dtos.AccountDto.RegisterDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "YardBooking.API.Controllers.AuthController",
-    "Method": "RevokeToken",
-    "RelativePath": "api/Auth/revoke-token",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "YardBooking.BLL.Dtos.AccountDto.RefreshTokenDto",
         "IsRequired": true
       }
     ],

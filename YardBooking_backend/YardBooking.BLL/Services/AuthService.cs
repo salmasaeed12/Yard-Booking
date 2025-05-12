@@ -43,15 +43,17 @@ namespace YardBooking.Application.Services
             applicationUser.UserName = RegisterDto.Name;
             applicationUser.address= RegisterDto.address;
             applicationUser.PhoneNumber = RegisterDto.PhoneNumber;
+            applicationUser.Gender = RegisterDto.Gender;
+            applicationUser.Role = RegisterDto.Role;
 
             var identityResult = await _userManager.CreateAsync(applicationUser, RegisterDto.Password);
             if (identityResult.Succeeded)
             {
                 List<Claim> Claims = new List<Claim>();
-                Claims.Add(new Claim(ClaimTypes.Email, RegisterDto.Email));
-                Claims.Add(new Claim(ClaimTypes.Role, RegisterDto.Role));
+                Claims.Add(new Claim(ClaimTypes.Email, applicationUser.Email));
+                Claims.Add(new Claim(ClaimTypes.Role, applicationUser.Role));
                 Claims.Add(new Claim(ClaimTypes.StreetAddress, applicationUser.Id));
-                Claims.Add(new Claim("name", RegisterDto.Name));
+                Claims.Add(new Claim("name", applicationUser.UserName));
                 string token = GenerateJwtToken(Claims);
                 return new AuthResponseDto
                 {

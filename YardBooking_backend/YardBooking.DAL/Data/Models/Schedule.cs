@@ -17,7 +17,7 @@ namespace YardBooking.DAL.Data.Models
         public int YardID_FK { get; set; }
         public virtual Yard Yard { get; set; }
 
-        public DateTime DayOfWeek { get; set; }
+        public int DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public bool IsActive { get; set; }
