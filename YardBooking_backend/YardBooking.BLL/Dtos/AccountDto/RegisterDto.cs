@@ -30,6 +30,6 @@ namespace YardBooking.BLL.Dtos.AccountDto
         public string Location { get; set; }
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public UserRole Role { get; set; } = UserRole.User;
+        public string Role { get; set; }
     }
 }

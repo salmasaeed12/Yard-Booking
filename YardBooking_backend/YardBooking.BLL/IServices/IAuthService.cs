@@ -9,10 +9,8 @@ namespace YardBooking.BLL.IServices
 {
     public interface IAuthService
     {
-        Task<AuthResponseDto> RegisterAsync(RegisterDto model);
-        Task<AuthResponseDto> LoginAsync(LoginDto model);
-        Task<AuthResponseDto> RefreshTokenAsync(string token);
-        Task<bool> RevokeTokenAsync(string token);
-        Task<bool> ChangePasswordAsync(string userId, ChangePasswordDto model);
+        AuthResponseDto Register(RegisterDto model);
+        AuthResponseDto Login(LoginDto model);
+        bool ChangePassword(string userId, ChangePasswordDto model);
     }
 }

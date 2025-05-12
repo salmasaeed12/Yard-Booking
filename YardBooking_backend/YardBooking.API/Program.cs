@@ -48,20 +48,6 @@ namespace YardBooking.API
             builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
 
-
-            // Add CORS
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", builder =>
-                {
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
-                });
-            });
-
-
-
             // add automapper
             builder.Services.AddAutoMapper(m => m.AddProfile(new MappingProfile()));
 

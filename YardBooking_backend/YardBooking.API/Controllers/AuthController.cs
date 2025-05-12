@@ -18,14 +18,14 @@ namespace YardBooking.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterDto model)
+        public  IActionResult Register(RegisterDto model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _authService.RegisterAsync(model);
+            var result =  _authService.Register(model);
             if (!result.IsSuccessful)
             {
                 return BadRequest(result);
@@ -35,14 +35,14 @@ namespace YardBooking.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginDto model)
+        public  IActionResult Login(LoginDto model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var result = await _authService.LoginAsync(model);
+            var result =  _authService.Login(model);
             if (!result.IsSuccessful)
             {
                 return Unauthorized(result);

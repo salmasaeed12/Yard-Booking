@@ -16,7 +16,7 @@ namespace YardBooking.DAL.Data.Models
         public DateTime DateOfBirth { get; set; }
         public string Location { get; set; }
         public string Gender { get; set; }
-        public UserRole Role { get; set; }
+        public string Role { get; set; }
 
         public ICollection<TeamMember> TeamMembers { get; set; }
     }

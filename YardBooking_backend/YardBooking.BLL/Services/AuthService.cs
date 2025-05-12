@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,31 +16,27 @@ using YardBooking.BLL.Dtos.AccountDto;
 using YardBooking.BLL.IServices;
 using YardBooking.DAL.Data.Models;
 using YardBooking.DAL.Inerfaces;
+using YardBooking.DAL.Repository;
 
 namespace YardBooking.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IConfiguration _configuration;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public AuthService(
-            UserManager<ApplicationUser> userManager,
-            IConfiguration configuration,
-            IUnitOfWork unitOfWork,
-            IMapper mapper)
+        private readonly IUserRepo _userRepo;
+        private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration; 
+
+        public AuthService(IUserRepo userRepo, IMapper mapper,IConfiguration configuration )
         {
-            _userManager = userManager;
-            _configuration = configuration;
-            _unitOfWork = unitOfWork;
+            _userRepo = userRepo;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
-        public async Task<AuthResponseDto> RegisterAsync(RegisterDto model)
+        public  AuthResponseDto Register(RegisterDto model)
         {
-            var userExists = await _userManager.FindByEmailAsync(model.Email);
+            var userExists =  _userRepo.GetUserByEmail(model.Email);
             if (userExists != null)
             {
                 return new AuthResponseDto
@@ -48,30 +45,22 @@ namespace YardBooking.Application.Services
                     Message = "User already exists!"
                 };
             }
-
-            // Use AutoMapper to map RegisterDto to ApplicationUser
+            // hash password
+            var passwordHash = new PasswordHasher<ApplicationUser>().HashPassword();
+            // use automapper to map the model to the user entity
             var user = _mapper.Map<ApplicationUser>(model);
-            user.UserName = model.Email; // Ensure username is set to email
-            user.SecurityStamp = Guid.NewGuid().ToString();
-
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded)
+            user.PasswordHash = passwordHash;
+            return new AuthResponseDto
             {
-                return new AuthResponseDto
-                {
-                    IsSuccessful = false,
-                    Message = string.Join(", ", result.Errors.Select(e => e.Description))
-                };
-            }
-
-            await _userManager.AddToRoleAsync(user, model.Role.ToString());
-
-            return await GenerateJwtToken(user);
+                IsSuccessful = true,
+                Message = "User created successfully!",
+                Token = 
+            };
         }
 
-        public async Task<AuthResponseDto> LoginAsync(LoginDto model)
+        public AuthResponseDto Login(LoginDto model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user =  _userRepo.GetUserByEmail(model.Email);
             if (user == null)
             {
                 return new AuthResponseDto
@@ -81,7 +70,7 @@ namespace YardBooking.Application.Services
                 };
             }
 
-            var isPasswordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            var isPasswordValid =  _userRepo.VerifyPassword(user, model.Password);
             if (!isPasswordValid)
             {
                 return new AuthResponseDto
@@ -90,61 +79,34 @@ namespace YardBooking.Application.Services
                     Message = "Invalid credentials"
                 };
             }
+            List <Claim> Claims = new List<Claim>();
+            Claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+            Claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            Claims.Add(new Claim(ClaimTypes.Role, user.Role));
+            Claims.Add(new Claim("name", user.Name));
 
-            return await GenerateJwtToken(user);
-        }
+            string key = _configuration.GetValue<string>("Jwt:Key");
+            SecurityKey secKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            SigningCredentials creds = new SigningCredentials(secKey, SecurityAlgorithms.HmacSha256);
+            
+            JwtSecurityToken token = new JwtSecurityToken(
+                issuer: _configuration.GetValue<string>("Jwt:Issuer"),
+                audience: _configuration.GetValue<string>("Jwt:Audience"),
+                claims: Claims,
+                expires: DateTime.UtcNow.AddDays(1),
+                signingCredentials: creds
+            );
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
-        public async Task<AuthResponseDto> RefreshTokenAsync(string token)
-        {
-            var refreshToken = await _unitOfWork.RefreshTokens.SingleOrDefaultAsync(r => r.Token == token);
-            if (refreshToken == null || !refreshToken.IsActive)
+            return new AuthResponseDto
             {
-                return new AuthResponseDto
-                {
-                    IsSuccessful = false,
-                    Message = "Invalid refresh token"
-                };
+                IsSuccessful = true,
+                Message = "User Login successfully!",
+                Token = tokenString
             }
-
-            var user = await _userManager.FindByIdAsync(refreshToken.UserId);
-            if (user == null)
-            {
-                return new AuthResponseDto
-                {
-                    IsSuccessful = false,
-                    Message = "User not found"
-                };
-            }
-
-            // Generate new tokens
-            var newTokenResponse = await GenerateJwtToken(user);
-
-            // Revoke current refresh token
-            refreshToken.Revoked = DateTime.UtcNow;
-            refreshToken.ReplacedByToken = newTokenResponse.RefreshToken;
-
-            // Save changes
-            await _unitOfWork.CompleteAsync();
-
-            return newTokenResponse;
-        }
-
-        public async Task<bool> RevokeTokenAsync(string token)
-        {
-            var refreshToken = await _unitOfWork.RefreshTokens.SingleOrDefaultAsync(r => r.Token == token);
-            if (refreshToken == null || !refreshToken.IsActive)
-            {
-                return false;
-            }
-
-            // Revoke token
-            refreshToken.Revoked = DateTime.UtcNow;
-            await _unitOfWork.CompleteAsync();
-
-            return true;
-        }
-
-        public async Task<bool> ChangePasswordAsync(string userId, ChangePasswordDto model)
+                ;
+        }   
+        public bool ChangePassword(string userId, ChangePasswordDto model)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -156,70 +118,30 @@ namespace YardBooking.Application.Services
             return result.Succeeded;
         }
 
-        private async Task<AuthResponseDto> GenerateJwtToken(ApplicationUser user)
+
+
+
+        public string GenerateJwtToken(RegisterDto model)
         {
-            var userRoles = await _userManager.GetRolesAsync(user);
-
-            var authClaims = new List<Claim>
+            var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, model.Email), // user Email
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // unique JWT identifier
+                new Claim(ClaimTypes.Role, model.Role) // user Role
             };
 
-            foreach (var userRole in userRoles)
-            {
-                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-            }
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-            var tokenValidityInMinutes = Convert.ToInt32(_configuration["JWT:ValidityInMinutes"]);
+            var token = new JwtSecurityToken(
+                issuer: "your-app",
+                audience: "your-app",
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(authClaims),
-                Expires = DateTime.UtcNow.AddMinutes(tokenValidityInMinutes),
-                SigningCredentials = new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var refreshToken = GenerateRefreshToken();
-
-            // Save the refresh token
-            user.RefreshTokens.Add(new RefreshToken
-            {
-                Token = refreshToken,
-                UserId = user.Id,
-                Created = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddDays(7),
-                CreatedByIp = "127.0.0.1" // In a real app, get the IP from the request
-            });
-
-            await _unitOfWork.CompleteAsync();
-
-            return new AuthResponseDto
-            {
-                IsSuccessful = true,
-                Token = tokenHandler.WriteToken(token),
-                RefreshToken = refreshToken,
-                Expiration = tokenDescriptor.Expires.Value,
-                UserId = user.Id,
-                Email = user.Email,
-                Name = user.Name,
-                Roles = userRoles.ToList(),
-                Message = "Authentication successful"
-            };
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private string GenerateRefreshToken()
-        {
-            var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                return Convert.ToBase64String(randomNumber);
-            }
-        }
+
     }
 }

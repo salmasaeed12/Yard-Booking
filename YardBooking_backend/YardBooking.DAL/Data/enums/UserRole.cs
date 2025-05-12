@@ -9,8 +9,6 @@ namespace YardBooking.DAL.Data.enums
     public enum UserRole
     {
         User,
-        YardOwner,
-        Admin
+        YardOwner
     }
-
 }
