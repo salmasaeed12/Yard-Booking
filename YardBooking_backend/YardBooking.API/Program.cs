@@ -26,12 +26,6 @@ namespace YardBooking.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            // Register services
-            builder.Services.AddScoped<IAuthService, AuthService>();
-
-            // Register repositories
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Register repositories
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
@@ -47,6 +41,8 @@ namespace YardBooking.API
             // Register service
             builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
+            builder.Services.AddScoped<IUserRepo,UserRepo>();
+
 
             // add automapper
             builder.Services.AddAutoMapper(m => m.AddProfile(new MappingProfile()));
@@ -54,30 +50,30 @@ namespace YardBooking.API
             builder.Services.AddDbContext<YardBookingContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // Register services
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+
             // Add Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;
                 options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireNonAlphanumeric = true;
                 options.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<YardBookingContext>()
             .AddDefaultTokenProviders();
 
             // Add JWT Authentication
-            var jwtSettings = builder.Configuration.GetSection("Jwt");
-            var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
+            var jwtSettings = builder.Configuration.GetSection("Jwt:Key").Value;
+            var key = Encoding.ASCII.GetBytes(jwtSettings);
 
             builder.Services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = "jwt";
+                options.DefaultChallengeScheme = "jwt";
             })
-            .AddJwtBearer(options =>
+            .AddJwtBearer("jwt",options =>
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
@@ -86,9 +82,7 @@ namespace YardBooking.API
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ClockSkew = TimeSpan.Zero
-                };
+                    ValidateAudience = false,                };
             });
 
 

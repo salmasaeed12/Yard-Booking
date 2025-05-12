@@ -17,7 +17,7 @@ namespace YardBooking.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -277,7 +277,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("YardId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Offer", b =>
@@ -309,7 +309,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("YardId");
 
-                    b.ToTable("Offers");
+                    b.ToTable("Offers", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Payment", b =>
@@ -344,7 +344,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.RefreshToken", b =>
@@ -388,7 +388,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Schedule", b =>
@@ -418,7 +418,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("YardId");
 
-                    b.ToTable("Schedules");
+                    b.ToTable("Schedules", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Team", b =>
@@ -441,7 +441,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("CaptainId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.TeamBooking", b =>
@@ -456,7 +456,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("TeamBookings");
+                    b.ToTable("TeamBookings", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.TeamMember", b =>
@@ -475,7 +475,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("TeamMembers");
+                    b.ToTable("TeamMembers", (string)null);
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Yard", b =>
@@ -513,7 +513,7 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Yards");
+                    b.ToTable("Yards", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -24,122 +24,135 @@ namespace YardBooking.Application.Services
     {
 
         private readonly IUserRepo _userRepo;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration; 
 
-        public AuthService(IUserRepo userRepo, IMapper mapper,IConfiguration configuration )
+        public AuthService(IUserRepo userRepo, IMapper mapper,IConfiguration configuration, UserManager<ApplicationUser> userManager )
         {
+            _userManager = userManager;
             _userRepo = userRepo;
             _mapper = mapper;
             _configuration = configuration;
         }
 
-        public  AuthResponseDto Register(RegisterDto model)
+        public  async Task<AuthResponseDto> RegisterAsync(RegisterDto RegisterDto)
         {
-            var userExists =  _userRepo.GetUserByEmail(model.Email);
-            if (userExists != null)
+            ApplicationUser applicationUser = new ApplicationUser();
+            applicationUser.Email = RegisterDto.Email;
+            applicationUser.UserName = RegisterDto.Name;
+            applicationUser.address= RegisterDto.address;
+            applicationUser.PhoneNumber = RegisterDto.PhoneNumber;
+
+            var identityResult = await _userManager.CreateAsync(applicationUser, RegisterDto.Password);
+            if (identityResult.Succeeded)
+            {
+                List<Claim> Claims = new List<Claim>();
+                Claims.Add(new Claim(ClaimTypes.Email, RegisterDto.Email));
+                Claims.Add(new Claim(ClaimTypes.Role, RegisterDto.Role));
+                Claims.Add(new Claim(ClaimTypes.StreetAddress, applicationUser.Id));
+                Claims.Add(new Claim("name", RegisterDto.Name));
+                string token = GenerateJwtToken(Claims);
+                return new AuthResponseDto
+                {
+                    IsSuccessful = true,
+                    Message = "User Register successfully!",
+                    Token = token
+                };
+            }
+            else
             {
                 return new AuthResponseDto
                 {
                     IsSuccessful = false,
-                    Message = "User already exists!"
+                    Message = "User Register failed!",
+                    Token = null
                 };
-            }
-            // hash password
-            var passwordHash = new PasswordHasher<ApplicationUser>().HashPassword();
-            // use automapper to map the model to the user entity
-            var user = _mapper.Map<ApplicationUser>(model);
-            user.PasswordHash = passwordHash;
-            return new AuthResponseDto
-            {
-                IsSuccessful = true,
-                Message = "User created successfully!",
-                Token = 
-            };
+            }   
         }
 
-        public AuthResponseDto Login(LoginDto model)
+        public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
         {
-            var user =  _userRepo.GetUserByEmail(model.Email);
-            if (user == null)
+            ApplicationUser applicationUser = new ApplicationUser();
+            var user = await _userManager.FindByEmailAsync(loginDto.Email);
+           if(user == null)
             {
                 return new AuthResponseDto
                 {
                     IsSuccessful = false,
-                    Message = "Invalid credentials"
+                    Message = "Invalid Email or Password Try Again!",
+                    Token = null
                 };
             }
-
-            var isPasswordValid =  _userRepo.VerifyPassword(user, model.Password);
-            if (!isPasswordValid)
+            bool result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+            if (!result)
             {
                 return new AuthResponseDto
                 {
                     IsSuccessful = false,
-                    Message = "Invalid credentials"
+                    Message = "Invalid Email or Password Try Again!",
+                    Token = null
                 };
             }
-            List <Claim> Claims = new List<Claim>();
-            Claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
-            Claims.Add(new Claim(ClaimTypes.Email, user.Email));
-            Claims.Add(new Claim(ClaimTypes.Role, user.Role));
-            Claims.Add(new Claim("name", user.Name));
 
-            string key = _configuration.GetValue<string>("Jwt:Key");
-            SecurityKey secKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
-            SigningCredentials creds = new SigningCredentials(secKey, SecurityAlgorithms.HmacSha256);
-            
-            JwtSecurityToken token = new JwtSecurityToken(
-                issuer: _configuration.GetValue<string>("Jwt:Issuer"),
-                audience: _configuration.GetValue<string>("Jwt:Audience"),
-                claims: Claims,
-                expires: DateTime.UtcNow.AddDays(1),
-                signingCredentials: creds
-            );
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
+            var claims = _userManager.GetClaimsAsync(user).Result.ToList();
+            string tokenString = GenerateJwtToken(claims);
             return new AuthResponseDto
             {
                 IsSuccessful = true,
                 Message = "User Login successfully!",
                 Token = tokenString
-            }
-                ;
-        }   
-        public bool ChangePassword(string userId, ChangePasswordDto model)
+            };
+        }
+
+
+        public async Task<AuthResponseDto> ChangePasswordAsync(string userId, ChangePasswordDto dto)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return false;
+                return new AuthResponseDto
+                {
+                    IsSuccessful = false,
+                    Message = "User not found"
+                };
             }
 
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-            return result.Succeeded;
+            var result = await _userManager.ChangePasswordAsync(user, dto.CurrentPassword, dto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return new AuthResponseDto
+                {
+                    IsSuccessful = false,
+                    Message = string.Join("; ", result.Errors.Select(e => e.Description))
+                };
+            }
+
+            return new AuthResponseDto
+            {
+                IsSuccessful = true,
+                Message = "Password changed successfully"
+            };
         }
 
 
 
-
-        public string GenerateJwtToken(RegisterDto model)
+        private string GenerateJwtToken(List<Claim> claims)
         {
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Email, model.Email), // user Email
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // unique JWT identifier
-                new Claim(ClaimTypes.Role, model.Role) // user Role
-            };
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: "your-app",
-                audience: "your-app",
+            string key = _configuration.GetSection("Jwt:Key").Value;
+            SecurityKey secKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            SigningCredentials creds = new SigningCredentials(secKey, SecurityAlgorithms.HmacSha256);
+            var expireDate = DateTime.UtcNow.AddDays(1);
+            JwtSecurityToken token = new JwtSecurityToken(
+                issuer: _configuration.GetValue<string>("Jwt:Issuer"),
+                audience: _configuration.GetValue<string>("Jwt:Audience"),
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+                expires: expireDate,
+                signingCredentials: creds
+            );
+            string tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return tokenString;
         }
 
 

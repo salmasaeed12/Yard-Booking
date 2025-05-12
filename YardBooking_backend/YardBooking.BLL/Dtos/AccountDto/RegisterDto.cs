@@ -27,7 +27,7 @@ namespace YardBooking.BLL.Dtos.AccountDto
 
         public string PhoneNumber { get; set; }
         public string IDNumber { get; set; }
-        public string Location { get; set; }
+        public string address { get; set; }
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Role { get; set; }

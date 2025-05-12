@@ -32,15 +32,15 @@ namespace YardBooking.BLL.AutoMapper
             CreateMap<UpdateYardDto, Yard>();
 
             // Team mappings
-            CreateMap<Team, TeamDto>()
-                .ForMember(dest => dest.CaptainName, opt => opt.MapFrom(src => src.Captain.Name));
+            CreateMap<Team, TeamDto>();
+                //.ForMember(dest => dest.CaptainName, opt => opt.MapFrom(src => src.Captain.Name));
             CreateMap<CreateTeamDto, Team>();
             CreateMap<UpdateTeamDto, Team>();
 
             // TeamMember mappings
-            CreateMap<TeamMember, TeamMemberDto>()
-                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Name))
-                .ForMember(dest => dest.TeamName, opt => opt.MapFrom(src => src.Team.TeamName));
+            CreateMap<TeamMember, TeamMemberDto>();
+                //.ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Name))
+                //.ForMember(dest => dest.TeamName, opt => opt.MapFrom(src => src.Team.TeamName));
 
             // Schedule mappings
             CreateMap<Schedule, ScheduleDto>();

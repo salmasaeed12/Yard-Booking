@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YardBooking.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09d0ecc079d37eb670e595c197b1bff7a69c254c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d53b4e5cd109889b2092c9b666a92a3cfac0e27")]
 [assembly: System.Reflection.AssemblyProductAttribute("YardBooking.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YardBooking.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

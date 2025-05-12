@@ -24,7 +24,6 @@ namespace YardBooking.DAL.Data
         public DbSet<TeamBooking> TeamBookings { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Offer> Offers { get; set; }
-        public DbSet<RefreshToken> RefreshTokens { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -110,11 +109,6 @@ namespace YardBooking.DAL.Data
                 .HasOne(o => o.Yard)
                 .WithMany(y => y.Offers)
                 .HasForeignKey(o => o.YardId);
-
-            modelBuilder.Entity<RefreshToken>()
-                .HasOne(rt => rt.User)
-                .WithMany(u => u.RefreshTokens)
-                .HasForeignKey(rt => rt.UserId);
 
             // Configure decimal precision to avoid truncation warnings
             modelBuilder.Entity<Offer>()

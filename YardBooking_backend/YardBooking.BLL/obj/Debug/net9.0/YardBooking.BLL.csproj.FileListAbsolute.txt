@@ -14,3 +14,19 @@ E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\
 E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\refint\YardBooking.BLL.dll
 E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.pdb
 E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\ref\YardBooking.BLL.dll
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.csproj.AssemblyReference.cache
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.AssemblyInfoInputs.cache
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.AssemblyInfo.cs
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.csproj.CoreCompileInputs.cache
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.sourcelink.json
+D:\yard_project\YardBooking_backend\YardBooking.BLL\bin\Debug\net9.0\YardBooking.BLL.deps.json
+D:\yard_project\YardBooking_backend\YardBooking.BLL\bin\Debug\net9.0\YardBooking.BLL.dll
+D:\yard_project\YardBooking_backend\YardBooking.BLL\bin\Debug\net9.0\YardBooking.BLL.pdb
+D:\yard_project\YardBooking_backend\YardBooking.BLL\bin\Debug\net9.0\YardBooking.DAL.dll
+D:\yard_project\YardBooking_backend\YardBooking.BLL\bin\Debug\net9.0\YardBooking.DAL.pdb
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBook.180427C5.Up2Date
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.dll
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\refint\YardBooking.BLL.dll
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\YardBooking.BLL.pdb
+D:\yard_project\YardBooking_backend\YardBooking.BLL\obj\Debug\net9.0\ref\YardBooking.BLL.dll

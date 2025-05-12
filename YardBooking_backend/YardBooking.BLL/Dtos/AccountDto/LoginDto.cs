@@ -15,5 +15,6 @@ namespace YardBooking.BLL.Dtos.AccountDto
 
         [Required]
         public string Password { get; set; }
+        public string Role { get; set; }
     }
 }
