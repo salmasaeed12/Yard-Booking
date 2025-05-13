@@ -1,0 +1,45 @@
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.deps.json
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.runtimeconfig.json
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.dll
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.pdb
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.AssemblyReference.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfoInputs.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfo.cs
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.CoreCompileInputs.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.sourcelink.json
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.dll
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\refint\YardBooking.DAL.dll
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
+C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.deps.json
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.runtimeconfig.json
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.pdb
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.AssemblyReference.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfoInputs.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfo.cs
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.CoreCompileInputs.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.sourcelink.json
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\refint\YardBooking.DAL.dll
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
+D:\رواد مصر\project\New folder (2)\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.deps.json
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.runtimeconfig.json
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\bin\Debug\net8.0\YardBooking.DAL.pdb
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.AssemblyReference.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfoInputs.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.AssemblyInfo.cs
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.csproj.CoreCompileInputs.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.sourcelink.json
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\refint\YardBooking.DAL.dll
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
+E:\New folder\Yard-Booking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll
