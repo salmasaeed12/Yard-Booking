@@ -16,7 +16,7 @@ namespace YardBooking.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -87,6 +87,23 @@ namespace YardBooking.API
 
             var app = builder.Build();
 
+            // add roles
+            async Task SeedRolesAsync(IServiceProvider serviceProvider)
+            {
+                var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                string[] roleNames = { "player", "owner" };
+
+                foreach (var roleName in roleNames)
+                {
+                    var roleExists = await roleManager.RoleExistsAsync(roleName);
+                    if (!roleExists)
+                    {
+                        await roleManager.CreateAsync(new IdentityRole(roleName));
+                    }
+                }
+            }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -100,6 +117,14 @@ namespace YardBooking.API
 
 
             app.MapControllers();
+
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                await SeedRolesAsync(services);
+            }
+
 
             app.Run();
         }

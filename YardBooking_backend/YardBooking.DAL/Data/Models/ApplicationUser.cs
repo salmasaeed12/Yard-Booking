@@ -13,7 +13,6 @@ namespace YardBooking.DAL.Data.Models
         public DateTime DateOfBirth { get; set; }
         public string ? address { get; set; }
         public string Gender { get; set; }
-        public string Role { get; set; }
         public  ICollection<TeamMember> TeamMemberships { get; set; }
         public  ICollection<Yard> OwnedYards { get; set; }
 

@@ -36,33 +36,55 @@ namespace YardBooking.Application.Services
             _configuration = configuration;
         }
 
-        public  async Task<AuthResponseDto> RegisterAsync(RegisterDto RegisterDto)
-        {
-            ApplicationUser applicationUser = new ApplicationUser();
-            applicationUser.Email = RegisterDto.Email;
-            applicationUser.UserName = RegisterDto.Name;
-            applicationUser.address= RegisterDto.address;
-            applicationUser.PhoneNumber = RegisterDto.PhoneNumber;
-            applicationUser.Gender = RegisterDto.Gender;
-            applicationUser.Role = RegisterDto.Role;
+        //public  async Task<AuthResponseDto> RegisterAsync(RegisterDto RegisterDto)
+        //{
+        //    ApplicationUser applicationUser = new ApplicationUser();
+        //    applicationUser.Email = RegisterDto.Email;
+        //    applicationUser.UserName = RegisterDto.Name;
+        //    applicationUser.address= RegisterDto.address;
+        //    applicationUser.PhoneNumber = RegisterDto.PhoneNumber;
+        //    applicationUser.Gender = RegisterDto.Gender;
+        //    //applicationUser.Role = RegisterDto.Role;
 
-            var identityResult = await _userManager.CreateAsync(applicationUser, RegisterDto.Password);
-            if (identityResult.Succeeded)
+        //    var identityResult = await _userManager.CreateAsync(applicationUser, RegisterDto.Password);
+        //    if (identityResult.Succeeded)
+        //    {
+        //        List<Claim> Claims = new List<Claim>();
+        //        Claims.Add(new Claim(ClaimTypes.Email, applicationUser.Email));
+        //        Claims.Add(new Claim(ClaimTypes.Role, applicationUser.Role));
+        //        Claims.Add(new Claim(ClaimTypes.StreetAddress, applicationUser.Id));
+        //        Claims.Add(new Claim("name", applicationUser.UserName));
+        //        string token = GenerateJwtToken(Claims);
+        //        return new AuthResponseDto
+        //        {
+        //            IsSuccessful = true,
+        //            Message = "User Register successfully!",
+        //            Token = token
+        //        };
+        //    }
+        //    else
+        //    {
+        //        return new AuthResponseDto
+        //        {
+        //            IsSuccessful = false,
+        //            Message = "User Register failed!",
+        //            Token = null
+        //        };
+        //    }
+        //}
+        public async Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto)
+        {
+            var applicationUser = new ApplicationUser
             {
-                List<Claim> Claims = new List<Claim>();
-                Claims.Add(new Claim(ClaimTypes.Email, applicationUser.Email));
-                Claims.Add(new Claim(ClaimTypes.Role, applicationUser.Role));
-                Claims.Add(new Claim(ClaimTypes.StreetAddress, applicationUser.Id));
-                Claims.Add(new Claim("name", applicationUser.UserName));
-                string token = GenerateJwtToken(Claims);
-                return new AuthResponseDto
-                {
-                    IsSuccessful = true,
-                    Message = "User Register successfully!",
-                    Token = token
-                };
-            }
-            else
+                Email = registerDto.Email,
+                UserName = registerDto.Name,
+                address = registerDto.address,
+                PhoneNumber = registerDto.PhoneNumber,
+                Gender = registerDto.Gender
+            };
+
+            var identityResult = await _userManager.CreateAsync(applicationUser, registerDto.Password);
+            if (!identityResult.Succeeded)
             {
                 return new AuthResponseDto
                 {
@@ -70,14 +92,73 @@ namespace YardBooking.Application.Services
                     Message = "User Register failed!",
                     Token = null
                 };
-            }   
+            }
+
+            // ✅ أضف المستخدم إلى الدور (مثلاً "Player" أو "Owner")
+            await _userManager.AddToRoleAsync(applicationUser, registerDto.Role);
+
+            // ✅ استخرج كل Claims وRoles
+            var userClaims = await _userManager.GetClaimsAsync(applicationUser);
+            var userRoles = await _userManager.GetRolesAsync(applicationUser);
+
+            foreach (var role in userRoles)
+            {
+                userClaims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
+            userClaims.Add(new Claim(ClaimTypes.Email, applicationUser.Email));
+            userClaims.Add(new Claim(ClaimTypes.StreetAddress, applicationUser.Id));
+            userClaims.Add(new Claim("name", applicationUser.UserName));
+
+            var token = GenerateJwtToken(userClaims.ToList());
+
+            return new AuthResponseDto
+            {
+                IsSuccessful = true,
+                Message = "User Register successfully!",
+                Token = token
+            };
         }
 
+        //public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
+        //{
+        //    ApplicationUser applicationUser = new ApplicationUser();
+        //    var user = await _userManager.FindByEmailAsync(loginDto.Email);
+        //   if(user == null)
+        //    {
+        //        return new AuthResponseDto
+        //        {
+        //            IsSuccessful = false,
+        //            Message = "Invalid Email or Password Try Again!",
+        //            Token = null
+        //        };
+        //    }
+        //    bool result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+        //    if (!result)
+        //    {
+        //        return new AuthResponseDto
+        //        {
+        //            IsSuccessful = false,
+        //            Message = "Invalid Email or Password Try Again!",
+        //            Token = null
+        //        };
+        //    }
+
+        //    var claims = _userManager.GetClaimsAsync(user).Result.ToList();
+        //    string tokenString = GenerateJwtToken(claims);
+        //    return new AuthResponseDto
+        //    {
+        //        IsSuccessful = true,
+        //        Message = "User Login successfully!",
+        //        Token = tokenString
+        //    };
+        //}
         public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
         {
             ApplicationUser applicationUser = new ApplicationUser();
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
-           if(user == null)
+
+            if (user == null)
             {
                 return new AuthResponseDto
                 {
@@ -86,6 +167,7 @@ namespace YardBooking.Application.Services
                     Token = null
                 };
             }
+
             bool result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
             if (!result)
             {
@@ -97,7 +179,31 @@ namespace YardBooking.Application.Services
                 };
             }
 
-            var claims = _userManager.GetClaimsAsync(user).Result.ToList();
+            // Get roles of the user
+            var roles = await _userManager.GetRolesAsync(user);
+
+            // Create claims list
+            List<Claim> claims = new List<Claim>{
+                                        new Claim(ClaimTypes.Email, user.Email),
+                                        new Claim("username", user.UserName),
+                                        };
+
+            // Add role(s) to the claims
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
+            // Optionally, you can check for specific roles if you want to define custom logic based on role
+            if (roles.Contains("player"))
+            {
+                claims.Add(new Claim("userRole", "player"));
+            }
+            else if (roles.Contains("owner"))
+            {
+                claims.Add(new Claim("userRole", "owner"));
+            }
+
             string tokenString = GenerateJwtToken(claims);
             return new AuthResponseDto
             {
@@ -106,6 +212,13 @@ namespace YardBooking.Application.Services
                 Token = tokenString
             };
         }
+
+
+
+
+
+
+
 
 
         public async Task<AuthResponseDto> ChangePasswordAsync(string userId, ChangePasswordDto dto)
