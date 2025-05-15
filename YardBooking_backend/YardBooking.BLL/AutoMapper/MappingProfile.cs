@@ -28,8 +28,7 @@ namespace YardBooking.BLL.AutoMapper
 
             // Yard mappings
             CreateMap<Yard, YardDto>();
-            CreateMap<CreateYardDto, Yard>();
-            CreateMap<UpdateYardDto, Yard>();
+            
 
             // Team mappings
             CreateMap<Team, TeamDto>();
@@ -72,6 +71,17 @@ namespace YardBooking.BLL.AutoMapper
             CreateMap<Booking, BookingDto>();
             CreateMap<CreateBookingDto, Booking>();
             CreateMap<UpdateBookingDto, Booking>();
+
+            // Yard -> YardDto
+            CreateMap<Yard, YardDto>()
+                .ForMember(dest => dest.OwnerName, opt => opt.MapFrom(src =>
+                    src.Owner != null && src.Owner.User != null ? src.Owner.User.Name : string.Empty));
+
+            // YardCreateDto -> Yard
+            CreateMap<YardCreateDto, Yard>();
+
+            // YardUpdateDto -> Yard
+            CreateMap<YardUpdateDto, Yard>();
         }
     }
 }

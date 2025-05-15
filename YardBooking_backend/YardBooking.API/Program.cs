@@ -43,6 +43,13 @@ namespace YardBooking.API
 
             builder.Services.AddScoped<IUserRepo,UserRepo>();
 
+            // Register Yard Services
+            builder.Services.AddScoped<IYardRepository, YardRepository>();
+            builder.Services.AddScoped<IYardService, YardService>();
+
+            // Register AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 
             // add automapper
             builder.Services.AddAutoMapper(m => m.AddProfile(new MappingProfile()));

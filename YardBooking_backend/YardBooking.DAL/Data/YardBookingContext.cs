@@ -16,126 +16,183 @@ namespace YardBooking.DAL.Data
         public YardBookingContext(DbContextOptions<YardBookingContext> options) : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .ConfigureWarnings(warnings =>
-                    warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
-        }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        // DbSets for all entities
         public DbSet<Yard> Yards { get; set; }
+        public DbSet<YardOwner> YardOwners { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Offer> Offers { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
-        public DbSet<Schedule> Schedules { get; set; }
-        public DbSet<Booking> Bookings { get; set; }
         public DbSet<TeamBooking> TeamBookings { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<Offer> Offers { get; set; }
-        
+        public DbSet<Proximity> Proximities { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure many-to-many relationships with composite keys
-            modelBuilder.Entity<TeamMember>()
-                 .HasKey(tm => new { tm.TeamId, tm.UserId });
+            // Configure Yard entity
+            modelBuilder.Entity<Yard>(entity =>
+            {
+                entity.HasKey(e => e.YardID);
+                entity.Property(e => e.YardName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.YardLocation).HasMaxLength(200);
 
-            modelBuilder.Entity<TeamBooking>()
-                .HasKey(tb => new { tb.TeamId, tb.BookingId });
+                // Configure relationship with YardOwner
+                entity.HasOne(e => e.Owner)
+                    .WithMany(o => o.Yards)
+                    .HasForeignKey(e => e.OwnerId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure relationships
-            modelBuilder.Entity<TeamMember>()
-                .HasOne(tm => tm.Team)
-                .WithMany(t => t.Members)
-                .HasForeignKey(tm => tm.TeamId)
-                .OnDelete(DeleteBehavior.Restrict);
+                // Convert YardPhotos from List<string> to comma-separated string in DB
+                entity.Property(e => e.YardPhotos)
+                    .HasConversion(
+                        v => string.Join(',', v),
+                        v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+            });
 
-            modelBuilder.Entity<TeamMember>()
-                .HasOne(tm => tm.User)
-                .WithMany(u => u.TeamMemberships)
-                .HasForeignKey(tm => tm.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // Configure YardOwner entity
+            modelBuilder.Entity<YardOwner>(entity =>
+            {
+                entity.HasKey(e => e.YardID);
+                entity.Property(e => e.YardLocation).HasMaxLength(200);
 
-            //--------------------------------
-            // Configure UserId column length for TeamMembers to avoid exceeding index size
-            modelBuilder.Entity<TeamMember>()
-                .Property(tm => tm.UserId)
-                .HasMaxLength(450); // Limit the size to stay under 900 bytes total key length
-            //--------------------------------
+                // Configure relationship with ApplicationUser
+                entity.HasOne<ApplicationUser>()
+                    .WithMany()
+                    .HasForeignKey(e => e.OwnerID)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<TeamBooking>()
-                .HasOne(tb => tb.Team)
-                .WithMany(t => t.TeamBookings)
-                .HasForeignKey(tb => tb.TeamId);
+                // Convert YardPhotos from List<string> to comma-separated string in DB
+                entity.Property(e => e.YardPhotos)
+                    .HasConversion(
+                        v => string.Join(',', v),
+                        v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+            });
 
-            modelBuilder.Entity<TeamBooking>()
-                .HasOne(tb => tb.Booking)
-                .WithMany(b => b.TeamBookings)
-                .HasForeignKey(tb => tb.BookingId);
+            // Configure Schedule entity
+            modelBuilder.Entity<Schedule>(entity =>
+            {
+                entity.HasKey(e => e.ScheduleId);
+                entity.Property(e => e.DayOfWeek).HasMaxLength(10);
+                entity.Property(e => e.StartTime).HasMaxLength(10);
+                entity.Property(e => e.EndTime).HasMaxLength(10);
+                entity.Property(e => e.IsActive).HasDefaultValue(true);
+            });
 
-            modelBuilder.Entity<Yard>()
-                .HasOne(y => y.Owner)
-                .WithMany(u => u.OwnedYards)
-                .HasForeignKey(y => y.OwnerId);
+            // Configure Booking entity
+            modelBuilder.Entity<Booking>(entity =>
+            {
+                entity.HasKey(e => e.BookingID);
 
-            modelBuilder.Entity<Team>()
-                .HasOne(t => t.Captain)
-                .WithMany()
-                .HasForeignKey(t => t.CaptainId);
+                // Configure relationships
+                entity.HasOne<Yard>()
+                    .WithMany(y => y.Bookings)
+                    .HasForeignKey(b => b.YardId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Schedule>()
-                .HasOne(s => s.Yard)
-                .WithMany(y => y.Schedules)
-                .HasForeignKey(s => s.YardID_FK);
+                entity.HasOne<Schedule>()
+                    .WithMany()
+                    .HasForeignKey(b => b.ScheduleId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
 
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Schedule)
-                .WithMany()
-                .HasForeignKey(b => b.ScheduleId);
+            // Configure Offer entity
+            modelBuilder.Entity<Offer>(entity =>
+            {
+                entity.HasKey(e => e.OfferId);
+                entity.Property(e => e.ValidUntil).IsRequired();
 
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Yard)
-                .WithMany(y => y.Bookings)
-                .HasForeignKey(b => b.YardId);
+                // Configure relationship with Yard
+                entity.HasOne<Yard>()
+                    .WithMany(y => y.Offers)
+                    .HasForeignKey(o => o.OfferId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Schedule)
-                .WithMany()
-                .HasForeignKey(b => b.ScheduleId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // Configure Payment entity
+            modelBuilder.Entity<Payment>(entity =>
+            {
+                entity.HasKey(e => e.PaymentId);
+                entity.Property(e => e.Amount).IsRequired();
+                entity.Property(e => e.PaymentDate).IsRequired();
+                entity.Property(e => e.Status).HasMaxLength(20);
 
-            modelBuilder.Entity<Booking>()
-            .HasOne(b => b.Yard)
-            .WithMany(y => y.Bookings)
-            .HasForeignKey(b => b.YardId)
-            .OnDelete(DeleteBehavior.Restrict);
+                // Configure relationship with Booking
+                entity.HasOne<Booking>()
+                    .WithMany()
+                    .HasForeignKey(p => p.BookingId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
 
+            // Configure Team entity
+            modelBuilder.Entity<Team>(entity =>
+            {
+                entity.HasKey(e => e.TeamId);
+                entity.Property(e => e.TeamName).IsRequired().HasMaxLength(100);
 
-            modelBuilder.Entity<Payment>()
-                .HasOne(p => p.Booking)
-                .WithMany(b => b.Payments)
-                .HasForeignKey(p => p.BookingId);
+                // Configure relationship with ApplicationUser (captain)
+                entity.HasOne<ApplicationUser>()
+                    .WithMany()
+                    .HasForeignKey(t => t.CaptainId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
 
-            modelBuilder.Entity<Offer>()
-                .HasOne(o => o.Yard)
-                .WithMany(y => y.Offers)
-                .HasForeignKey(o => o.YardId);
+            // Configure TeamMember entity
+            modelBuilder.Entity<TeamMember>(entity =>
+            {
+                entity.HasKey(e => new { e.TeamId, e.UserId });
+                entity.Property(e => e.JoinDate).IsRequired();
 
-            // Configure decimal precision to avoid truncation warnings
-            modelBuilder.Entity<Offer>()
-                .Property(o => o.DiscountPercentage)
-                .HasPrecision(5, 2);
+                // Configure relationships
+                entity.HasOne<Team>()
+                    .WithMany(t => t.Members)
+                    .HasForeignKey(tm => tm.TeamId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Payment>()
-                .Property(p => p.Amount)
-                .HasPrecision(10, 2);
+                entity.HasOne<ApplicationUser>()
+                    .WithMany()
+                    .HasForeignKey(tm => tm.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
 
-            modelBuilder.Entity<Schedule>()
-                        .HasOne(s => s.Yard)
-                        .WithMany(y => y.Schedules)
-                        .HasForeignKey(s => s.YardID_FK)
-                        .OnDelete(DeleteBehavior.Cascade);
+            // Configure TeamBooking entity
+            modelBuilder.Entity<TeamBooking>(entity =>
+            {
+                entity.HasKey(e => new { e.BookingId, e.TeamId });
+
+                // Configure relationships
+                entity.HasOne<Booking>()
+                    .WithMany()
+                    .HasForeignKey(tb => tb.BookingId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne<Team>()
+                    .WithMany()
+                    .HasForeignKey(tb => tb.TeamId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // Configure Proximity entity
+            modelBuilder.Entity<Proximity>(entity =>
+            {
+                entity.HasKey(e => new { e.YardID, e.UserID });
+                entity.Property(e => e.Distance).IsRequired();
+
+                // Configure relationships
+                entity.HasOne<Yard>()
+                    .WithMany(y => y.Proximities)
+                    .HasForeignKey(p => p.YardID)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne<ApplicationUser>()
+                    .WithMany()
+                    .HasForeignKey(p => p.UserID)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
     }
 }

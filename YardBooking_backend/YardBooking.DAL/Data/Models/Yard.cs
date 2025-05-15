@@ -8,29 +8,38 @@ using System.Threading.Tasks;
 
 namespace YardBooking.DAL.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Yard
     {
-        public int YardId { get; set; }
+        [Key]
+        public int YardID { get; set; }
+
+        [Required]
+        [StringLength(100)]
         public string YardName { get; set; }
+
+        [StringLength(200)]
         public string YardLocation { get; set; }
-        public double YardArea { get; set; }
-        public string ServicesOffered { get; set; }
-        public string YardPhotos { get; set; }
 
-        // Foreign key for owner
+        public double? YardArea { get; set; }
+
+        public bool? ServicesOffered { get; set; }
+
+        public List<string> YardPhotos { get; set; } = new List<string>();
+
+        
+        [Required]
         public string OwnerId { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
 
-        // Navigation properties
-        public virtual ICollection<Schedule> Schedules { get; set; }
+        [ForeignKey("OwnerId")]
+        public virtual YardOwner Owner { get; set; }
+
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<Offer> Offers { get; set; }
-
-        public Yard()
-        {
-            Schedules = new HashSet<Schedule>();
-            Bookings = new HashSet<Booking>();
-            Offers = new HashSet<Offer>();
-        }
+        public virtual ICollection<Proximity> Proximities { get; set; }
     }
+
 }
+

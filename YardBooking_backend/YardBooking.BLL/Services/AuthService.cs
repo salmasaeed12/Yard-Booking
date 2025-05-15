@@ -41,7 +41,7 @@ namespace YardBooking.Application.Services
             ApplicationUser applicationUser = new ApplicationUser();
             applicationUser.Email = RegisterDto.Email;
             applicationUser.UserName = RegisterDto.Name;
-            applicationUser.address= RegisterDto.address;
+            applicationUser.Location= RegisterDto.address;
             applicationUser.PhoneNumber = RegisterDto.PhoneNumber;
             applicationUser.Gender = RegisterDto.Gender;
             applicationUser.Role = RegisterDto.Role;
