@@ -16,7 +16,7 @@ namespace YardBooking.DAL.Data.Models
 
         [Key]
         [Column(Order = 1)]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         [Required]
         public double Distance { get; set; }
@@ -26,6 +26,7 @@ namespace YardBooking.DAL.Data.Models
         public virtual Yard Yard { get; set; }
 
         [ForeignKey("UserID")]
-        public virtual User User { get; set; }
+        public virtual ApplicationUser User { get; set; }  // هنا التعديل
     }
 }
+

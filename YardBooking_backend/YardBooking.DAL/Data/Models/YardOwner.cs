@@ -11,7 +11,7 @@ namespace YardBooking.DAL.Data.Models
     public class YardOwner
     {
         [Key]
-        public int YardID { get; set; }
+        public string YardID { get; set; }
 
         public string OwnerID { get; set; }  
 

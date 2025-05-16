@@ -13,6 +13,6 @@ namespace YardBooking.BLL.Dtos.TeamMember
     {
         // Navigation Properties
         public Team Team { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

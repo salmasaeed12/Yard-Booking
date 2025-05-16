@@ -5,7 +5,7 @@ namespace YardBooking.DAL.Data.Models
 {
     public class TeamMember
     {
-        public int TeamId { get; set; }
+        public string TeamId { get; set; }
         public string UserId { get; set; }
         public DateTime JoinDate { get; set; }
 
