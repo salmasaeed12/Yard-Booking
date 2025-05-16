@@ -39,8 +39,9 @@ namespace YardBooking.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync(LoginDto loginDto)
         {
-            var result =  _authService.LoginAsync(loginDto);
-            if (!result.Result.IsSuccessful)
+            var result = await _authService.LoginAsync(loginDto);
+
+            if (!result.IsSuccessful)
             {
                 return Unauthorized(result);
             }
