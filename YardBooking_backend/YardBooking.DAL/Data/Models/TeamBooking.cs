@@ -9,7 +9,7 @@ namespace YardBooking.DAL.Data.Models
     public class TeamBooking
     {
         public int BookingId { get; set; }
-        public int TeamId { get; set; }
+        public string TeamId { get; set; }
 
         // Navigation properties
         public virtual Booking Booking { get; set; }

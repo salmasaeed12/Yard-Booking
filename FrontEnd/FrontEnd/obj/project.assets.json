@@ -313,23 +313,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LOQ\\.nuget\\packages\\": {},
+    "C:\\Users\\skytop\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\yard_project\\FrontEnd\\FrontEnd\\FrontEnd.csproj",
+      "projectUniqueName": "C:\\Users\\skytop\\Desktop\\project\\FrontEnd\\FrontEnd\\FrontEnd.csproj",
       "projectName": "FrontEnd",
-      "projectPath": "D:\\yard_project\\FrontEnd\\FrontEnd\\FrontEnd.csproj",
-      "packagesPath": "C:\\Users\\LOQ\\.nuget\\packages\\",
-      "outputPath": "D:\\yard_project\\FrontEnd\\FrontEnd\\obj\\",
+      "projectPath": "C:\\Users\\skytop\\Desktop\\project\\FrontEnd\\FrontEnd\\FrontEnd.csproj",
+      "packagesPath": "C:\\Users\\skytop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\skytop\\Desktop\\project\\FrontEnd\\FrontEnd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\LOQ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\skytop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -390,7 +390,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

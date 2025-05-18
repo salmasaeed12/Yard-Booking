@@ -167,10 +167,12 @@ namespace YardBooking.DAL.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -181,11 +183,19 @@ namespace YardBooking.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -195,14 +205,35 @@ namespace YardBooking.DAL.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PersonalNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ProfilePhoto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Schedule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -213,9 +244,6 @@ namespace YardBooking.DAL.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("address")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -244,12 +272,15 @@ namespace YardBooking.DAL.Migrations
                     b.Property<int>("ScheduleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ScheduleId1")
+                    b.Property<int>("ScheduleId1")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("YardID")
+                        .HasColumnType("int");
 
                     b.Property<int>("YardId")
                         .HasColumnType("int");
@@ -260,6 +291,8 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasIndex("ScheduleId1");
 
+                    b.HasIndex("YardID");
+
                     b.HasIndex("YardId");
 
                     b.ToTable("Bookings");
@@ -268,14 +301,10 @@ namespace YardBooking.DAL.Migrations
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Offer", b =>
                 {
                     b.Property<int>("OfferId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OfferId"));
-
                     b.Property<decimal>("DiscountPercentage")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("OfferDetails")
                         .IsRequired()
@@ -306,8 +335,10 @@ namespace YardBooking.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"));
 
                     b.Property<decimal>("Amount")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("BookingID")
+                        .HasColumnType("int");
 
                     b.Property<int>("BookingId")
                         .HasColumnType("int");
@@ -319,6 +350,7 @@ namespace YardBooking.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
+                        .HasMaxLength(20)
                         .HasColumnType("int");
 
                     b.Property<string>("TransactionId")
@@ -327,9 +359,42 @@ namespace YardBooking.DAL.Migrations
 
                     b.HasKey("PaymentId");
 
+                    b.HasIndex("BookingID");
+
                     b.HasIndex("BookingId");
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("YardBooking.DAL.Data.Models.Proximity", b =>
+                {
+                    b.Property<int>("YardID")
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(1);
+
+                    b.Property<double>("Distance")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("YardID1")
+                        .HasColumnType("int");
+
+                    b.HasKey("YardID", "UserID");
+
+                    b.HasIndex("UserID");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("YardID1");
+
+                    b.ToTable("Proximities");
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Schedule", b =>
@@ -341,15 +406,20 @@ namespace YardBooking.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleId"));
 
                     b.Property<int>("DayOfWeek")
+                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<TimeSpan>("EndTime")
+                        .HasMaxLength(10)
                         .HasColumnType("time");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<TimeSpan>("StartTime")
+                        .HasMaxLength(10)
                         .HasColumnType("time");
 
                     b.Property<int>("YardID_FK")
@@ -364,97 +434,162 @@ namespace YardBooking.DAL.Migrations
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Team", b =>
                 {
-                    b.Property<int>("TeamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamId"));
+                    b.Property<string>("TeamId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CaptainId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CaptainId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("TeamName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("TeamId");
 
                     b.HasIndex("CaptainId");
+
+                    b.HasIndex("CaptainId1");
 
                     b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.TeamBooking", b =>
                 {
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
                     b.Property<int>("BookingId")
                         .HasColumnType("int");
 
-                    b.HasKey("TeamId", "BookingId");
+                    b.Property<string>("TeamId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasIndex("BookingId");
+                    b.Property<int>("BookingID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("BookingId", "TeamId");
+
+                    b.HasIndex("BookingID");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("TeamId1");
 
                     b.ToTable("TeamBookings");
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.TeamMember", b =>
                 {
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
+                    b.Property<string>("TeamId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
-                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("TeamId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("TeamId", "UserId");
 
+                    b.HasIndex("TeamId1");
+
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("TeamMembers");
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Yard", b =>
                 {
-                    b.Property<int>("YardId")
+                    b.Property<int>("YardID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YardId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YardID"));
 
                     b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ServicesOffered")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("ServicesOffered")
+                        .HasColumnType("bit");
 
-                    b.Property<double>("YardArea")
+                    b.Property<double?>("YardArea")
                         .HasColumnType("float");
 
                     b.Property<string>("YardLocation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("YardName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("YardPhotos")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("YardId");
+                    b.HasKey("YardID");
 
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Yards");
+                });
+
+            modelBuilder.Entity("YardBooking.DAL.Data.Models.YardOwner", b =>
+                {
+                    b.Property<string>("YardID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OwnerID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("ServicesOffered")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("YardArea")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YardLocation")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("YardPhotos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("YardID");
+
+                    b.HasIndex("OwnerID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("YardOwners");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -510,17 +645,25 @@ namespace YardBooking.DAL.Migrations
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Booking", b =>
                 {
-                    b.HasOne("YardBooking.DAL.Data.Models.Schedule", "Schedule")
+                    b.HasOne("YardBooking.DAL.Data.Models.Schedule", null)
                         .WithMany()
                         .HasForeignKey("ScheduleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("YardBooking.DAL.Data.Models.Schedule", null)
+                    b.HasOne("YardBooking.DAL.Data.Models.Schedule", "Schedule")
                         .WithMany("Bookings")
-                        .HasForeignKey("ScheduleId1");
+                        .HasForeignKey("ScheduleId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("YardBooking.DAL.Data.Models.Yard", "Yard")
+                        .WithMany()
+                        .HasForeignKey("YardID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Yard", null)
                         .WithMany("Bookings")
                         .HasForeignKey("YardId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -533,8 +676,14 @@ namespace YardBooking.DAL.Migrations
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Offer", b =>
                 {
-                    b.HasOne("YardBooking.DAL.Data.Models.Yard", "Yard")
+                    b.HasOne("YardBooking.DAL.Data.Models.Yard", null)
                         .WithMany("Offers")
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Yard", "Yard")
+                        .WithMany()
                         .HasForeignKey("YardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -546,17 +695,54 @@ namespace YardBooking.DAL.Migrations
                 {
                     b.HasOne("YardBooking.DAL.Data.Models.Booking", "Booking")
                         .WithMany("Payments")
-                        .HasForeignKey("BookingId")
+                        .HasForeignKey("BookingID")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Booking", null)
+                        .WithMany()
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
                 });
 
+            modelBuilder.Entity("YardBooking.DAL.Data.Models.Proximity", b =>
+                {
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Yard", null)
+                        .WithMany("Proximities")
+                        .HasForeignKey("YardID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Yard", "Yard")
+                        .WithMany()
+                        .HasForeignKey("YardID1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("Yard");
+                });
+
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Schedule", b =>
                 {
                     b.HasOne("YardBooking.DAL.Data.Models.Yard", "Yard")
-                        .WithMany("Schedules")
+                        .WithMany()
                         .HasForeignKey("YardID_FK")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -566,9 +752,15 @@ namespace YardBooking.DAL.Migrations
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Team", b =>
                 {
-                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", "Captain")
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("CaptainId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", "Captain")
+                        .WithMany()
+                        .HasForeignKey("CaptainId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -579,13 +771,25 @@ namespace YardBooking.DAL.Migrations
                 {
                     b.HasOne("YardBooking.DAL.Data.Models.Booking", "Booking")
                         .WithMany("TeamBookings")
+                        .HasForeignKey("BookingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Booking", null)
+                        .WithMany()
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("YardBooking.DAL.Data.Models.Team", null)
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("YardBooking.DAL.Data.Models.Team", "Team")
                         .WithMany("TeamBookings")
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("TeamId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -596,16 +800,28 @@ namespace YardBooking.DAL.Migrations
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.TeamMember", b =>
                 {
-                    b.HasOne("YardBooking.DAL.Data.Models.Team", "Team")
+                    b.HasOne("YardBooking.DAL.Data.Models.Team", null)
                         .WithMany("Members")
                         .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", "User")
-                        .WithMany("TeamMemberships")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany()
+                        .HasForeignKey("UserId1")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Team");
@@ -615,20 +831,30 @@ namespace YardBooking.DAL.Migrations
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Yard", b =>
                 {
-                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", "Owner")
-                        .WithMany("OwnedYards")
+                    b.HasOne("YardBooking.DAL.Data.Models.YardOwner", "Owner")
+                        .WithMany("Yards")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("YardBooking.DAL.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("YardBooking.DAL.Data.Models.YardOwner", b =>
                 {
-                    b.Navigation("OwnedYards");
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("OwnerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("TeamMemberships");
+                    b.HasOne("YardBooking.DAL.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("YardBooking.DAL.Data.Models.Booking", b =>
@@ -656,7 +882,12 @@ namespace YardBooking.DAL.Migrations
 
                     b.Navigation("Offers");
 
-                    b.Navigation("Schedules");
+                    b.Navigation("Proximities");
+                });
+
+            modelBuilder.Entity("YardBooking.DAL.Data.Models.YardOwner", b =>
+                {
+                    b.Navigation("Yards");
                 });
 #pragma warning restore 612, 618
         }
