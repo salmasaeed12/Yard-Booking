@@ -25,6 +25,20 @@ namespace YardBooking.DAL.Data
                 .WithOne(y => y.User)
                 .HasForeignKey(y => y.YardID)
                 .OnDelete(DeleteBehavior.Cascade);
+            // Existing configurations
+            base.OnModelCreating(modelBuilder);
+
+            // Add your new configurations
+            modelBuilder.Entity<Yard>()
+                .HasKey(y => y.YardID);
+
+            // If you need to store YardPhotos as JSON
+            modelBuilder.Entity<Yard>()
+                .Property(y => y.YardPhotos)
+                .HasConversion(
+                    v => System.Text.Json.JsonSerializer.Serialize(v, null),
+                    v => string.IsNullOrEmpty(v) ? new List<string>() :
+                         System.Text.Json.JsonSerializer.Deserialize<List<string>>(v, null)
 
             //// yard and schedule
             //modelBuilder.Entity<Yard>()
@@ -33,26 +47,26 @@ namespace YardBooking.DAL.Data
             //    .HasForeignKey(s => s.YardID)
             //    .OnDelete(DeleteBehavior.Cascade);
 
-            //// yard and booking
-            //modelBuilder.Entity<Yard>()
-            //    .HasMany(y => y.Bookings)
-            //    .WithOne(b => b.Yard)
-            //    .HasForeignKey(b => b.YardID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+                    //// yard and booking
+                    //modelBuilder.Entity<Yard>()
+                    //    .HasMany(y => y.Bookings)
+                    //    .WithOne(b => b.Yard)
+                    //    .HasForeignKey(b => b.YardID)
+                    //    .OnDelete(DeleteBehavior.Cascade);
 
-            //// user and booking
-            //modelBuilder.Entity<User>()
-            //    .HasMany(u => u.Bookings)
-            //    .WithOne(b => b.User)
-            //    .HasForeignKey(b => b.UserID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+                    //// user and booking
+                    //modelBuilder.Entity<User>()
+                    //    .HasMany(u => u.Bookings)
+                    //    .WithOne(b => b.User)
+                    //    .HasForeignKey(b => b.UserID)
+                    //    .OnDelete(DeleteBehavior.Cascade);
 
-            //// teammembers and team
-            //modelBuilder.Entity<Team>()
-            //    .HasMany(t => t.TeamMember)
-            //    .WithOne(tm => tm.Team)
-            //    .HasForeignKey(tm => tm.TeamID)
-            //    .OnDelete(DeleteBehavior.Cascade);
+                    //// teammembers and team
+                    //modelBuilder.Entity<Team>()
+                    //    .HasMany(t => t.TeamMember)
+                    //    .WithOne(tm => tm.Team)
+                    //    .HasForeignKey(tm => tm.TeamID)
+                    //    .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<User> Users { get; set; }

@@ -156,3 +156,6 @@ C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\De
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.pdb
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.genruntimeconfig.cache
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\ref\YardBooking.API.dll
+D:\mido\project\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.dll
+D:\mido\project\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\refint\YardBooking.API.dll
+D:\mido\project\YardBooking_backend\YardBooking.API\obj\Debug\net8.0\YardBooking.API.pdb

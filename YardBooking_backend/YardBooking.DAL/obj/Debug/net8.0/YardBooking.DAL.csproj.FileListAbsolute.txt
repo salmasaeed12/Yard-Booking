@@ -13,3 +13,6 @@ C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\De
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.genruntimeconfig.cache
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\ref\YardBooking.DAL.dll
+D:\mido\project\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.dll
+D:\mido\project\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\refint\YardBooking.DAL.dll
+D:\mido\project\YardBooking_backend\YardBooking.DAL\obj\Debug\net8.0\YardBooking.DAL.pdb

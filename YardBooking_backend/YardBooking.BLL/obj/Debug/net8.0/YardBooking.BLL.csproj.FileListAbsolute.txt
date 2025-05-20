@@ -14,3 +14,6 @@ C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.BLL\obj\De
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\refint\YardBooking.BLL.dll
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.pdb
 C:\Users\LOQ\Source\Repos\YardBooking\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\ref\YardBooking.BLL.dll
+D:\mido\project\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.dll
+D:\mido\project\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\refint\YardBooking.BLL.dll
+D:\mido\project\YardBooking_backend\YardBooking.BLL\obj\Debug\net8.0\YardBooking.BLL.pdb
